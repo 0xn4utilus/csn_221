@@ -376,14 +376,8 @@ int main()
         string parsed_line = parse_line(line);
         if (parsed_line != "-1")
         {
-            for(int k=0;k<4;k++){
-                output <<"\t\t\t\tinstMem["<<j<<"] <= 8`b";
-                for(int st=0;st<8;st++){
-                    output<<parsed_line[8*k+st];
-                }
-                output<<";\n";
+                output <<"\t\t\t\tinstMem["<<j<<"] <= 8`b"<<parsed_line<<";\n";
                 j++;
-            }
         }
         else
         {
@@ -392,5 +386,5 @@ int main()
         }
     }
 
-    output<<"\n\t\t\tend\n\t\tend\n\n\tassign instruction = {instMem[address], instMem[address + 1], instMem[address + 2], instMem[address + 3]};\nendmodule";
+    output<<"\n\t\t\tend\n\t\tend\n\n\tassign instruction = instMem[address];\nendmodule";
 }
