@@ -377,7 +377,7 @@ int main()
         if (parsed_line != "-1")
         {
             for(int k=0;k<4;k++){
-                output <<"\t\t\t\tinstMem["<<j<<"] = ";
+                output <<"\t\t\t\tinstMem["<<j<<"] <= 8`b";
                 for(int st=0;st<8;st++){
                     output<<parsed_line[8*k+st];
                 }
