@@ -213,9 +213,9 @@ string parse_line(string s)
         s = do_replace(s, "[)]", " ");
         s = do_replace(s, "[(]", " ");
         s = remove_extra_whitespaces(s);
-        for (const auto &[key, value] : J_TYPE_INSTRUCTIONS)
+        for (const auto i : J_TYPE_INSTRUCTIONS)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -223,14 +223,14 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                J_TYPE_INSTRUCTIONS[key].psuedo_address = bitset<PSUEDO_ADDRESS_LENGTH>(stol(v[1])).to_string();
-                return J_TYPE_INSTRUCTIONS[key].opcode + J_TYPE_INSTRUCTIONS[key].psuedo_address;
+                J_TYPE_INSTRUCTIONS[i.first].psuedo_address = bitset<PSUEDO_ADDRESS_LENGTH>(stol(v[1])).to_string();
+                return J_TYPE_INSTRUCTIONS[i.first].opcode + J_TYPE_INSTRUCTIONS[i.first].psuedo_address;
             }
         }
         
-        for (const auto &[key, value] : I_TYPE_INSTRUCTIONS_IMM)
+        for (const auto i : I_TYPE_INSTRUCTIONS_IMM)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -238,16 +238,16 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                I_TYPE_INSTRUCTIONS_IMM[key].rt = REGISTERS[v[1]];
-                I_TYPE_INSTRUCTIONS_IMM[key].rs = REGISTERS[v[2]];
-                I_TYPE_INSTRUCTIONS_IMM[key].imm = bitset<IMM_LENGTH>(stol(v[3])).to_string();
-                return I_TYPE_INSTRUCTIONS_IMM[key].opcode + I_TYPE_INSTRUCTIONS_IMM[key].rs + I_TYPE_INSTRUCTIONS_IMM[key].rt + I_TYPE_INSTRUCTIONS_IMM[key].imm;
+                I_TYPE_INSTRUCTIONS_IMM[i.first].rt = REGISTERS[v[1]];
+                I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[2]];
+                I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[3])).to_string();
+                return I_TYPE_INSTRUCTIONS_IMM[i.first].opcode + I_TYPE_INSTRUCTIONS_IMM[i.first].rs + I_TYPE_INSTRUCTIONS_IMM[i.first].rt + I_TYPE_INSTRUCTIONS_IMM[i.first].imm;
             }
         }
 
-        for (const auto &[key, value] : I_TYPE_INSTRUCTIONS_MEM)
+        for (const auto i : I_TYPE_INSTRUCTIONS_MEM)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -255,16 +255,16 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                I_TYPE_INSTRUCTIONS_IMM[key].rt = REGISTERS[v[1]];
-                I_TYPE_INSTRUCTIONS_IMM[key].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
-                I_TYPE_INSTRUCTIONS_IMM[key].rs = REGISTERS[v[3]];
-                return I_TYPE_INSTRUCTIONS_IMM[key].opcode + I_TYPE_INSTRUCTIONS_IMM[key].rs + I_TYPE_INSTRUCTIONS_IMM[key].rt + I_TYPE_INSTRUCTIONS_IMM[key].imm;
+                I_TYPE_INSTRUCTIONS_IMM[i.first].rt = REGISTERS[v[1]];
+                I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
+                I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[3]];
+                return I_TYPE_INSTRUCTIONS_IMM[i.first].opcode + I_TYPE_INSTRUCTIONS_IMM[i.first].rs + I_TYPE_INSTRUCTIONS_IMM[i.first].rt + I_TYPE_INSTRUCTIONS_IMM[i.first].imm;
             }
         }
 
-        for (const auto &[key, value] : R_TYPE_INSTRUCTIONS_RT_RD_SA)
+        for (const auto i : R_TYPE_INSTRUCTIONS_RT_RD_SA)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -272,17 +272,17 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                R_TYPE_INSTRUCTIONS_RT_RD_SA[key].rd = REGISTERS[v[1]];
-                R_TYPE_INSTRUCTIONS_RT_RD_SA[key].rt = REGISTERS[v[2]];
-                R_TYPE_INSTRUCTIONS_RT_RD_SA[key].shamt = bitset<SHAMT_LENGTH>(stol(v[3])).to_string();
+                R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].rd = REGISTERS[v[1]];
+                R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].rt = REGISTERS[v[2]];
+                R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].shamt = bitset<SHAMT_LENGTH>(stol(v[3])).to_string();
                 ;
-                return R_TYPE_INSTRUCTIONS_RT_RD_SA[key].opcode + R_TYPE_INSTRUCTIONS_RT_RD_SA[key].rs + R_TYPE_INSTRUCTIONS_RT_RD_SA[key].rt + R_TYPE_INSTRUCTIONS_RT_RD_SA[key].rd + R_TYPE_INSTRUCTIONS_RT_RD_SA[key].shamt + R_TYPE_INSTRUCTIONS_RT_RD_SA[key].funct;
+                return R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].opcode + R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].rs + R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].rt + R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].rd + R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].shamt + R_TYPE_INSTRUCTIONS_RT_RD_SA[i.first].funct;
             }
         }
 
-        for (const auto &[key, value] : R_TYPE_INSTRUCTIONS_RS_RT_RD)
+        for (const auto i : R_TYPE_INSTRUCTIONS_RS_RT_RD)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -290,16 +290,16 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rd = REGISTERS[v[1]];
-                R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rs = REGISTERS[v[2]];
-                R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rt = REGISTERS[v[3]];
-                return R_TYPE_INSTRUCTIONS_RS_RT_RD[key].opcode + R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rs + R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rt + R_TYPE_INSTRUCTIONS_RS_RT_RD[key].rd + R_TYPE_INSTRUCTIONS_RS_RT_RD[key].shamt + R_TYPE_INSTRUCTIONS_RS_RT_RD[key].funct;
+                R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rd = REGISTERS[v[1]];
+                R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rs = REGISTERS[v[2]];
+                R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rt = REGISTERS[v[3]];
+                return R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].opcode + R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rs + R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rt + R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].rd + R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].shamt + R_TYPE_INSTRUCTIONS_RS_RT_RD[i.first].funct;
             }
         }
 
-        for (const auto &[key, value] : R_TYPE_INSTRUCTIONS_RS_RT)
+        for (const auto i : R_TYPE_INSTRUCTIONS_RS_RT)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -307,14 +307,14 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                R_TYPE_INSTRUCTIONS_RS_RT[key].rs = REGISTERS[v[1]];
-                R_TYPE_INSTRUCTIONS_RS_RT[key].rt = REGISTERS[v[2]];
-                return R_TYPE_INSTRUCTIONS_RS_RT[key].opcode + R_TYPE_INSTRUCTIONS_RS_RT[key].rs + R_TYPE_INSTRUCTIONS_RS_RT[key].rt + R_TYPE_INSTRUCTIONS_RS_RT[key].rd + R_TYPE_INSTRUCTIONS_RS_RT[key].shamt + R_TYPE_INSTRUCTIONS_RS_RT[key].funct;
+                R_TYPE_INSTRUCTIONS_RS_RT[i.first].rs = REGISTERS[v[1]];
+                R_TYPE_INSTRUCTIONS_RS_RT[i.first].rt = REGISTERS[v[2]];
+                return R_TYPE_INSTRUCTIONS_RS_RT[i.first].opcode + R_TYPE_INSTRUCTIONS_RS_RT[i.first].rs + R_TYPE_INSTRUCTIONS_RS_RT[i.first].rt + R_TYPE_INSTRUCTIONS_RS_RT[i.first].rd + R_TYPE_INSTRUCTIONS_RS_RT[i.first].shamt + R_TYPE_INSTRUCTIONS_RS_RT[i.first].funct;
             }
         }
-        for (const auto &[key, value] : R_TYPE_INSTRUCTIONS_RS)
+        for (const auto i : R_TYPE_INSTRUCTIONS_RS)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -322,13 +322,13 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                R_TYPE_INSTRUCTIONS_RS[key].rs = REGISTERS[v[1]];
-                return R_TYPE_INSTRUCTIONS_RS[key].opcode + R_TYPE_INSTRUCTIONS_RS[key].rs + R_TYPE_INSTRUCTIONS_RS[key].rt + R_TYPE_INSTRUCTIONS_RS[key].rd + R_TYPE_INSTRUCTIONS_RS[key].shamt + R_TYPE_INSTRUCTIONS_RS[key].funct;
+                R_TYPE_INSTRUCTIONS_RS[i.first].rs = REGISTERS[v[1]];
+                return R_TYPE_INSTRUCTIONS_RS[i.first].opcode + R_TYPE_INSTRUCTIONS_RS[i.first].rs + R_TYPE_INSTRUCTIONS_RS[i.first].rt + R_TYPE_INSTRUCTIONS_RS[i.first].rd + R_TYPE_INSTRUCTIONS_RS[i.first].shamt + R_TYPE_INSTRUCTIONS_RS[i.first].funct;
             }
         }
-        for (const auto &[key, value] : R_TYPE_INSTRUCTIONS_RD)
+        for (const auto i : R_TYPE_INSTRUCTIONS_RD)
         {
-            string search_pattern = "^" + key + "\\s";
+            string search_pattern = "^" + i.first + "\\s";
             if (regex_search(s, regex(search_pattern)))
             {
                 vector<string> v = string_split(s);
@@ -336,8 +336,8 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                R_TYPE_INSTRUCTIONS_RD[key].rd = REGISTERS[v[1]];
-                return R_TYPE_INSTRUCTIONS_RD[key].opcode + R_TYPE_INSTRUCTIONS_RD[key].rs + R_TYPE_INSTRUCTIONS_RD[key].rt + R_TYPE_INSTRUCTIONS_RD[key].rd + R_TYPE_INSTRUCTIONS_RD[key].shamt + R_TYPE_INSTRUCTIONS_RD[key].funct;
+                R_TYPE_INSTRUCTIONS_RD[i.first].rd = REGISTERS[v[1]];
+                return R_TYPE_INSTRUCTIONS_RD[i.first].opcode + R_TYPE_INSTRUCTIONS_RD[i.first].rs + R_TYPE_INSTRUCTIONS_RD[i.first].rt + R_TYPE_INSTRUCTIONS_RD[i.first].rd + R_TYPE_INSTRUCTIONS_RD[i.first].shamt + R_TYPE_INSTRUCTIONS_RD[i.first].funct;
             }
         }
 
@@ -352,9 +352,6 @@ string parse_line(string s)
 
 int main()
 {
-    int n = 10000;
-    string s = bitset<32>(n).to_string();
-    cout << s << endl;
     fstream input;
     fstream output;
     input.open("input.txt", ios::in);
