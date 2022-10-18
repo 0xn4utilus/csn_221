@@ -139,7 +139,7 @@ map<string, r_format> R_TYPE_INSTRUCTIONS_RS_RT = {
     // need rs,rt
     {"DIV", make_r_format("000000", "", "", "00000", "00000", "011010")},
     {"DIVU", make_r_format("000000", "", "", "00000", "00000", "011011")},
-    {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},
+    {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},// try to implement it using 3 registers 
     {"MULTU", make_r_format("000000", "", "", "00000", "00000", "011001")}};
 
 map<string, r_format> R_TYPE_INSTRUCTIONS_RD = {
@@ -355,22 +355,35 @@ int main()
     fstream input;
     fstream output;
     input.open("input.txt", ios::in);
-    output.open("output.txt", ios::out);
+    output.open("instructionMemory.v", ios::out);
     if (!input)
     {
         cout << "Please provide input.txt" << '\n';
         return 0;
     }
+
+    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[31:0] instMem[511:0];\n\n\talways @ (*) begin\n\t\tif (rst) begin\n";
+
+    int j=0;
+
     string line;
     while (!input.eof())
     {
         getline(input, line);
         if(line.length()==0) continue;
         cout << line << '\n';
+
         string parsed_line = parse_line(line);
         if (parsed_line != "-1")
         {
-            output << parsed_line<<"\n";
+            for(int m=0;m<4;m++){
+                output <<"\t\tinstMem["<<j<<"] <= 8'b";
+                for(int k=0;k<8;k++){
+                    output<<parsed_line[8*m+k];
+                }
+                output<<";\n";
+                j++;
+            }
         }
         else
         {
@@ -378,4 +391,6 @@ int main()
             return 0;
         }
     }
+
+    output<<"\n\t\tend\n\n\tend\n\n\tassign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};\n\nendmodule";
 }
