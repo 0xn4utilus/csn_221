@@ -2,18 +2,16 @@
 
 module testbench ();
     wire [31:0] PC;
-    wire instruction;
-    // instructionFetch instructionFetch(clk,PC,newPC,branchPresent,branchOffset,instruction);
+    wire [31:0] instruction;
+    
     initial begin
         $dumpfile("testbench.vcd");
         $dumpvars(0,testbench);
-        // clk                  = 1;
-        // repeat(5000) #50 clk = ~clk ;
     end
     
-    assign inpPC=32'b00000000000000100000000000000000;
-    assign writeEnable = 1'b1;
-    ProgramCounter pc(inpPC,outPC,writeEnable);
+    assign PC=32'b00000000000000000000000000000001;
+
+    instructionMem instructionMem(PC,instruction);
 endmodule 
 
-// test-> 
+// test-> Pass

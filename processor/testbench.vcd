@@ -1,0 +1,25 @@
+$date
+	Wed Oct 19 19:43:37 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module testbench $end
+$var wire 32 ! PC [31:0] $end
+$var wire 32 " instruction [31:0] $end
+$scope module instructionMem $end
+$var wire 32 # PC [31:0] $end
+$var wire 32 $ instruction [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1000011000010000010000000000000 $
+b1 #
+b1000011000010000010000000000000 "
+b1 !
+$end

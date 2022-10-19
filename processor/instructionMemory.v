@@ -1,9 +1,8 @@
-module instructionMem (rst, PC, instruction);
-	input rst;
+module instructionMem (PC, instruction);
 	input [31:0] PC;
 	output [31:0] instruction;
 
-	reg[31:0] instMem[511:0];
+	reg[7:0] instMem[511:0];
 
 	initial begin
 		instMem[0] <= 8'b00000000;
@@ -19,6 +18,10 @@ module instructionMem (rst, PC, instruction);
 		instMem[10] <= 8'b00001000;
 		instMem[11] <= 8'b00100000;
 	end
+
+	// always @(*) begin
+	// 	$display("%0b",instMem[1]);
+	// end
 
 	assign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};
 
