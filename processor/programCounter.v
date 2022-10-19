@@ -1,20 +1,16 @@
-module programCounter(inpPC,
+module ProgramCounter(inpPC,
                       outPC,
                       writeEnable);
     input writeEnable;
     input [31:0] inpPC;
-    output reg [31:0] outPC = 0;
-    instructionDecode insDecode(
-    .hazardDetected(hazardDetected)
-    );
-    always @(*) begin
-        if (!hazardDetected)
-            case(writeEnable)
-                1'b1: outPC <= inpPC;
-            endcase
+    output wire [31:0] outPC;
     
-            end
-        
-        
-        
-        endmodule
+    reg[31:0] outPCReg;
+    always @(*) begin
+        case(writeEnable)
+            1'b1: outPCReg = inpPC;
+        endcase
+    end
+    assign outPC = outPCReg;
+    
+endmodule

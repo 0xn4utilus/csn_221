@@ -1,6 +1,11 @@
-module instructionFetch(clk, PC, newPC, branchPresent, branchOffset, instruction);
+module instructionFetch(clk,
+                        PC,
+                        newPC,
+                        branchPresent,
+                        branchOffset,
+                        instruction);
     input clk,branchPresent;
-    reg reset=1'b1;
+    reg reset = 1'b1;
     input [31:0] PC,branchOffset;
     wire write = 1'b1;
     output [31:0] newPC,instruction;
@@ -12,13 +17,13 @@ module instructionFetch(clk, PC, newPC, branchPresent, branchOffset, instruction
     .outPC(newPC),
     .writeEnable(write)
     );
-
+    
     instructionMemory instructionMemory(
-        .rst(reset),
-        .PC(PC),
-        .instruction(instruction)
+    .rst(reset),
+    .PC(PC),
+    .instruction(instruction)
     );
-
+    
     always @(posedge clk) begin
         if (write)
             case(branchPresent)     //if branchPresent == 1, then newPC = PC + branchOffset
@@ -29,5 +34,5 @@ module instructionFetch(clk, PC, newPC, branchPresent, branchOffset, instruction
             newPCReg <= PC;
     end
     
-    assign newPC = newPCReg;    
+    assign newPC = newPCReg;
 endmodule

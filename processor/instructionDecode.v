@@ -6,8 +6,7 @@ module instructionDecode(clk,
                          RtD,
                          RdD,
                          PCBranchD,
-                         hazardDetected
-                         );
+                         hazardDetected);
     input [31:0]instruction;
     output reg[4:0] RsD,RtD,RdD;
     input clk;
@@ -34,8 +33,8 @@ module instructionDecode(clk,
     
     output [31:0] valueOutput;
     IFtoIDReg IFtoID(
-        .instructionReg(instruction),
-        .PCReg(PCReg)
+    .instructionReg(instruction),
+    .PCReg(PCReg)
     );
     registerFile regFile(
     .clk(clk),
@@ -49,41 +48,41 @@ module instructionDecode(clk,
     // registers[instruction[20:16]] //this is data2_temp
     );
     always@(posedge clk) begin
-        index         <= instruction[25:21];
-        #2 data1      <= valueOutput;
-        #4flag1<=flagOutput;
-        #6 index      <= instruction[20:16];
-        #8flag2<=flagOutput;
+        index          <= instruction[25:21];
+        #2 data1       <= valueOutput;
+        #4flag1        <= flagOutput;
+        #6 index       <= instruction[20:16];
+        #8flag2        <= flagOutput;
         #10 data2_temp <= valueOutput;
         
         // if (RegWriteD) begin
-            hazardDetected<=0;
-            case(instruction[31:26]) 
-                6'b000000:
-                begin
-                    hazardDetected<=(!flag1) || (!flag2);
-                end
-                6'b000100:
-                begin 
-                    hazardDetected<=(!flag1);
-                end
-                6'd35:
-                begin
-                    hazardDetected<=(!flag1);
-                end
-                6'd43:
-                begin
-                    hazardDetected<=(!flag1);
-                end
-                
-    endcase
-            signExtended       = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
-            PCBranchD<=PCReg+4*signExtended;
-            if (ALUSrcD) data2 = signExtended;
-            else data2         = data2_temp;
-            RsD                = instruction[25:21];
-            RtD                = instruction[20:16];
-            RdD                = instruction[15:11];
+        hazardDetected <= 0;
+        case(instruction[31:26])
+            6'b000000:
+            begin
+                hazardDetected <= (!flag1) || (!flag2);
+            end
+            6'b000100:
+            begin
+                hazardDetected <= (!flag1);
+            end
+            6'd35:
+            begin
+                hazardDetected <= (!flag1);
+            end
+            6'd43:
+            begin
+                hazardDetected <= (!flag1);
+            end
+            
+        endcase
+        signExtended = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
+        PCBranchD <= PCReg+4*signExtended;
+        if (ALUSrcD) data2 = signExtended;
+        else data2         = data2_temp;
+        RsD                = instruction[25:21];
+        RtD                = instruction[20:16];
+        RdD                = instruction[15:11];
         // end
         
     end

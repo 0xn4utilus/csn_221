@@ -167,7 +167,7 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_MEM = {
 map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
     // immediate
     // need rs,rt,imm
-    {"ADDI", make_i_format("000010", "", "", "")}, //it was not standard op code
+    {"ADDI", make_i_format("001000", "", "", "")},
     {"ADDIU", make_i_format("001001", "", "", "")},
     {"ANDI", make_i_format("001100", "", "", "")},
     {"ORI", make_i_format("001101", "", "", "")},
@@ -177,7 +177,7 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
 
 map<string, j_format> J_TYPE_INSTRUCTIONS = {
     // need address
-    {"J", make_j_format("001000", "")}, //it was not standard op code
+    {"J", make_j_format("000010", "")},
     {"JAL", make_j_format("000011", "")},
 };
 
@@ -362,7 +362,7 @@ int main()
         return 0;
     }
 
-    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[31:0] instMem[511:0];\n\n\talways @ (*) begin\n\t\tif (rst) begin\n";
+    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[31:0] instMem[511:0];\n\n\tinitial begin\n";
 
     int j=0;
 
@@ -392,5 +392,5 @@ int main()
         }
     }
 
-    output<<"\n\t\tend\n\n\tend\n\n\tassign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};\n\nendmodule";
+    output<<"\tend\n\n\tassign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};\n\nendmodule";
 }

@@ -1,4 +1,14 @@
-module exeToMemReg(regWriteM, memToRegM, readDataM, ALUOut, writeRegM, regWriteW, memToRegW, readDataW, ALUOutW, writeRegW, clk);
+module exeToMemReg(regWriteM,
+                   memToRegM,
+                   readDataM,
+                   ALUOut,
+                   writeRegM,
+                   regWriteW,
+                   memToRegW,
+                   readDataW,
+                   ALUOutW,
+                   writeRegW,
+                   clk);
     input clk, regWriteM, memToRegM;
     input [4:0] writeRegM;
     input [31:0] readDataM, ALUOut;
@@ -12,6 +22,6 @@ module exeToMemReg(regWriteM, memToRegM, readDataM, ALUOut, writeRegM, regWriteW
         memToRegW = memToRegM;
         writeRegW = writeRegM;
         readDataW = readDataM;
-        ALUOutW = ALUOut;
-        end
+        ALUOutW   = ALUOut;
+    end
 endmodule

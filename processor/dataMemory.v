@@ -12,9 +12,9 @@ module dataMemory(clk,
     reg [31:0] outputMemReg;
     
     reg[31:0] memData[511:0];
-
+    
     integer i;
-
+    
     initial begin
         // Note that ++ operator does not exist in Verilog !
         for (i = 0; i < 512; i = i + 1) begin
