@@ -8,11 +8,11 @@ module ALU (input1,
             ex_cmd,
             alu_out,
             ALUOp,
-            BranchD);
+            branchD);
     input [31:0] input1, input2;
     input [3:0] ex_cmd;
     input [1:0] ALUOp;
-    input BranchD;
+    input branchD;
     output reg [31:0] alu_out;
     output reg flag,branchPresent;
     
@@ -21,7 +21,7 @@ module ALU (input1,
     controlUnit controlUnit(
     .ALUControlD(ex_cmd),
     .ALUOp(ALUOp),
-    .BranchD(BranchD)
+    .branchD(branchD)
     
     );
     instructionFetch instructionFetch(
@@ -60,12 +60,8 @@ module ALU (input1,
                 
             end
         endcase
-        Reg branchPresent = flag&BranchD;
         
-        
-        
-        
-        
+        branchPresent = flag & branchD;
         
     end
 endmodule

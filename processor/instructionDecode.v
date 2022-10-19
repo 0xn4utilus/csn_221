@@ -6,7 +6,9 @@ module instructionDecode(clk,
                          RtD,
                          RdD,
                          PCBranchD,
-                         hazardDetected);
+                         hazardDetected,
+                         PCSrcD,
+                         equalD);
     input [31:0]instruction;
     output reg[4:0] RsD,RtD,RdD;
     input clk;
@@ -14,7 +16,7 @@ module instructionDecode(clk,
     output[31:0] PCReg;
     output [3:0]ALUControlD;
     output [1:0] ALUOp;
-    output reg hazardDetected;
+    output reg hazardDetected,PCSrcD,equalD;
     reg flag1,flag2;
     controlUnit cu(
     .clk(clk),
@@ -77,12 +79,16 @@ module instructionDecode(clk,
             
         endcase
         signExtended = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
-        PCBranchD <= PCReg+4*signExtended;
+        PCBranchD <= PCReg+4*signExtended-32'd4; //-4 is done bea
         if (ALUSrcD) data2 = signExtended;
         else data2         = data2_temp;
         RsD                = instruction[25:21];
         RtD                = instruction[20:16];
         RdD                = instruction[15:11];
+
+        //beq
+        EqualD=(data1-data2_temp)==0;
+        PCSrcD=BranchD&&EqualD;
         // end
         
     end

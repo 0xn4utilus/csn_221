@@ -1,4 +1,4 @@
-module instructionMemory (clk,
+module memory (           clk,
                           RegWriteM,
                           MemToRegM,
                           MemWriteM,
@@ -6,7 +6,7 @@ module instructionMemory (clk,
                           WriteDataM,
                           WriteRegM,
                           active);
-    inout clk,RegWriteM, MemToRegM, WriteRegM;
+    input clk,RegWriteM, MemToRegM, WriteRegM;
     input MemWriteM;
     input [31:0] WriteDataM;
     output reg active = 1'b1;

@@ -4,7 +4,6 @@ module ProgramCounter(inpPC,
     input writeEnable;
     input [31:0] inpPC;
     output wire [31:0] outPC;
-    
     reg[31:0] outPCReg;
     always @(*) begin
         case(writeEnable)
