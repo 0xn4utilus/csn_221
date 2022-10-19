@@ -24,7 +24,7 @@ module dataMemory(clk,
     
     always @(posedge clk) begin
         if (active)                          //decides if read write instruction is received
-            case(rw)                        //decides read or write
+            case(rw)                         //decides read or write
                 1'b0: begin
                     outputMemReg = memData[index];
                 end
@@ -36,6 +36,6 @@ module dataMemory(clk,
             endcase
             end
         
-        assign outputMem = outputMemReg;           //we willl need a mux to decide if we don't want data to be returnrd in case of input
+        assign outputMem = outputMemReg;           //we will need a mux to decide if we don't want data to be returnrd in case of input
         
         endmodule

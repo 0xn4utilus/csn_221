@@ -1,26 +1,26 @@
 module IFtoIDReg(instruction,
                  instructionReg,
                  clk,
-                 reset,PCreg,outPC);
+                 reset,PCReg,outPC);
     input [31:0] instruction;
     input [31:0] outPC;
     input clk;
     output reg [31:0] instructionReg;
     input reset;
-    output reg [31:0] PCreg;
+    output reg [31:0] PCReg;
     
     
     instructionFetch instructionFetch(
     .instruction(instruction)
     
     );
-    ProgramCounter ProgramCounter (
+    programCounter programCounter (
        .outPC(outPC) 
     );
     
     reg [31:0]IFtoIDReg_in;
     reg[31:0] PC_in;
-    always@(negedge clk) begin
+    always @(posedge clk) begin
         if (reset) begin 
          IFtoIDReg_in <= 0;
          PC_in<=0;
@@ -29,10 +29,8 @@ module IFtoIDReg(instruction,
           IFtoIDReg_in      <= instruction;
           PC_in<=outPC+32'd4;
         end 
-    end
-    always @(posedge clk) begin
         instructionReg <= IFtoIDReg_in;
-        PCreg<=PC_in;
+        PCReg<=PC_in;
     end
     // assign instructionReg = instruction;
     

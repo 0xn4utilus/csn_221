@@ -1,4 +1,4 @@
-module instructionMem (rst, PC, instruction);
+module instructionMemory (rst, PC, instruction);
 	input rst;
 	input [31:0] PC;
 	output [31:0] instruction;

@@ -7,34 +7,44 @@ module ALU (input1,
             flag,
             ex_cmd,
             alu_out,
-            ALUOp);
+            ALUOp,BranchD);
     input [31:0] input1, input2;
     input [3:0] ex_cmd;
     input [1:0] ALUOp;
+    input BranchD;
     output reg [31:0] alu_out;
-    output reg flag;
+    output reg flag,branchPresent;
+    
+
 
     controlUnit controlUnit(
     .ALUControlD(ex_cmd),
-    .ALUOp(ALUOp)
+    .ALUOp(ALUOp),
+    .BranchD(BranchD)
+    
+    );
+    instructionFetch instructionFetch(
+        .branchPresent(branchPresent)
+
     );
     
     always @(*) begin
-        flag <= 0;
+        flag <= 32'd0;
         case (ALUOp)
             2'd2:
             begin
                 case(ex_cmd)
-                    4'b0000: alu_out <= input1 + input2;
-                    4'b0001: alu_out <= input1 - input2;
-                    4'b0010: alu_out <= input1 & input2;
-                    4'b0011: alu_out <= input1 | input2;
-                    4'b0100: alu_out <= ~(input1 | input2);
-                    4'b0101: alu_out <= input1 ^ input2;
-                    4'b0110: alu_out <= input1 << input2;
-                    4'b0111: alu_out <= input1 <<< input2;
-                    4'b1000: alu_out <= input1 >> input2;
-                    4'b1001: alu_out <= input1 >>> input2;
+                    4'b0010: alu_out <= input1 + input2;
+                    4'b0110: alu_out <= input1 - input2;
+                    4'b0000: alu_out <= input1 & input2;
+                    4'b0001: alu_out <= input1 | input2;
+                    // 4'b0100: alu_out <= ~(input1 | input2);
+                    // 4'b0101: alu_out <= input1 ^ input2;
+                    // 4'b0110: alu_out <= input1 << input2;
+                    // 4'b0111: alu_out <= input1 <<< input2;
+                    // 4'b1000: alu_out <= input1 >> input2;
+                    // 4'b1001: alu_out <= input1 >>> input2;
+                    4'b1111: alu_out <= input1 * input2;     
                     default: alu_out <= 0;
                 endcase
             end
@@ -43,10 +53,18 @@ module ALU (input1,
             begin
                 alu_out <= input1 - input2;
                 case(alu_out)
-                    32'd0:flag <= 1;
+                    32'd0:
+                    flag <= 32'd1;
                 endcase
                 
             end
         endcase
+        Reg branchPresent =flag&BranchD;
+        
+ 
+
+        
+        
+        
     end
 endmodule

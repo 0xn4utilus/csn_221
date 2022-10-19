@@ -167,7 +167,7 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_MEM = {
 map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
     // immediate
     // need rs,rt,imm
-    {"ADDI", make_i_format("001000", "", "", "")},
+    {"ADDI", make_i_format("000010", "", "", "")}, //it was not standard op code
     {"ADDIU", make_i_format("001001", "", "", "")},
     {"ANDI", make_i_format("001100", "", "", "")},
     {"ORI", make_i_format("001101", "", "", "")},
@@ -177,7 +177,7 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
 
 map<string, j_format> J_TYPE_INSTRUCTIONS = {
     // need address
-    {"J", make_j_format("000010", "")},
+    {"J", make_j_format("001000", "")}, //it was not standard op code
     {"JAL", make_j_format("000011", "")},
 };
 

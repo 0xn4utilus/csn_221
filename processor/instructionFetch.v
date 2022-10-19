@@ -7,13 +7,13 @@ module instructionFetch(clk, PC, newPC, branchPresent, branchOffset, instruction
     output reg [31:0] newPCReg;
     reg[31:0] instMem[511:0];
     
-    ProgramCounter PC_register(
+    programCounter PC_register(
     .inpPC(PC),
     .outPC(newPC),
     .writeEnable(write)
     );
 
-    instructionMem instructionMem(
+    instructionMemory instructionMemory(
         .rst(reset),
         .PC(PC),
         .instruction(instruction)
