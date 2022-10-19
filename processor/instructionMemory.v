@@ -19,10 +19,6 @@ module instructionMem (PC, instruction);
 		instMem[11] <= 8'b00100000;
 	end
 
-	// always @(*) begin
-	// 	$display("%0b",instMem[1]);
-	// end
-
 	assign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};
 
 endmodule

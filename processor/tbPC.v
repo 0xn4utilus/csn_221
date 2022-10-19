@@ -11,7 +11,7 @@ module testbench ();
     
     assign inpPC=32'b00000000000000100000000000000000;
     assign writeEnable = 1'b1;
-    ProgramCounter pc(inpPC,outPC,writeEnable);
+    ProgramCounter pc(clk,inpPC,outPC,writeEnable);
 endmodule
 
 //test-> PASS
