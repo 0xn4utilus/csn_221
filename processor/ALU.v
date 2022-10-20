@@ -10,22 +10,25 @@ module ALU (input1,
             ALUOp,
             branchD);
     input [31:0] input1, input2;
+    reg PCSrcD_reg;
+    output PCSrcD;
     input [3:0] ex_cmd;
     input [1:0] ALUOp;
+    
     input branchD;
     output reg [31:0] alu_out;
     output reg flag,branchPresent;
     
     
     
-    controlUnit controlUnit(
-    .ALUControlD(ex_cmd),
-    .ALUOp(ALUOp),
-    .branchD(branchD)
-    
-    );
+    // controlUnit controlUnit(
+    // .ALUControlD(ex_cmd),
+    // .ALUOp(ALUOp),
+    // .BranchD(BranchD)
+    // );
+
     instructionFetch instructionFetch(
-    .branchPresent(branchPresent)
+    .PCSrcD(PCSrcD)
     
     );
     
@@ -61,7 +64,8 @@ module ALU (input1,
             end
         endcase
         
-        branchPresent = flag & branchD;
-        
+        PCSrcD_reg = flag & branchD;
     end
+
+    assign PCSrcD = PCSrcD_reg;
 endmodule

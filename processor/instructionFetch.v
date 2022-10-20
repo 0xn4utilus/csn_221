@@ -11,7 +11,7 @@ module instructionFetch(clk,
     output [31:0] instruction;
     reg [31:0] PCReg,newPCreg = 32'd0;
     input hazardDetected,PCSrcD;
-    output [31:0] PCBranchD;
+    input [31:0] PCBranchD;
     
     assign PC = newPCreg;
     
