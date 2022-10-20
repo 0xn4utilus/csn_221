@@ -13,11 +13,15 @@ module testbench ();
         repeat(5000) #50 clk = ~clk;
     end
     
-    assign regWriteW   = 1'b1;
-    assign writeEnable = 1'b1;
+    assign regWriteW   = 1'b0;
+    assign writeEnable = 1'b0;
     assign readEnable  = 1'b1;
-    assign valueInput  = 32'b00000000000000100000000000000000;
+    assign valueInput  = 32'b00000000000000000000000000000010;
     assign index       = 5'b00001;
-    
+    //   always @(*) begin
+    //     $display("%0d",valueOutput);
+    // end
     registerFile registerFile(clk, index, valueInput, valueOutput, readEnable, writeEnable, regWriteW, flagOutput);
 endmodule
+
+//unable to read register file other things passed test

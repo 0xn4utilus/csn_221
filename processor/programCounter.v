@@ -1,4 +1,4 @@
-module ProgramCounter(inpPC,
+module programCounter(inpPC,
                       outPC,
                       writeEnable);
     input writeEnable;

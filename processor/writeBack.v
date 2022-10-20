@@ -27,5 +27,4 @@ module writeBack(memToRegW,
     end
     assign ResultW = ResultW_reg;
     
-    
 endmodule

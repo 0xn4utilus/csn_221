@@ -16,7 +16,7 @@ module testbench ();
     assign input1 = 32'd88;
     assign input2 = 32'd88;
     assign ex_cmd = 4'b1111;
-    assign ALUOp = 2'd1;
+    assign ALUOp = 2'd2;
 
     ALU ALU(input1, input2, flag, ex_cmd, alu_out, ALUOp, branchD);
     always @(*) begin

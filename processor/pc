@@ -13,7 +13,7 @@ v0x559541509040_0 .net "inpPC", 31 0, L_0x7fcab95c8018;  1 drivers
 v0x559541509100_0 .net "outPC", 31 0, L_0x559541519380;  1 drivers
 L_0x7fcab95c8060 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
 v0x5595415091a0_0 .net "writeEnable", 0 0, L_0x7fcab95c8060;  1 drivers
-S_0x5595414c3270 .scope module, "pc" "ProgramCounter" 2 14, 3 1 0, S_0x5595414c30f0;
+S_0x5595414c3270 .scope module, "pc" "programCounter" 2 14, 3 1 0, S_0x5595414c30f0;
  .timescale -9 -9;
     .port_info 0 /INPUT 32 "inpPC"
     .port_info 1 /OUTPUT 32 "outPC"

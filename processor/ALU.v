@@ -29,13 +29,12 @@ module ALU (input1,
 
     instructionFetch instructionFetch(
     .PCSrcD(PCSrcD)
-    
     );
     
     always @(*) begin
         flag <= 32'd0;
         case (ALUOp)
-            2'd2:
+            2'd2:     //arithmatic
             begin
                 case(ex_cmd)
                     4'b0010: alu_out    <= input1 + input2;
@@ -52,7 +51,7 @@ module ALU (input1,
                     default: alu_out    <= 0;
                 endcase
             end
-            2'd0: alu_out <= input1 + input2;
+            2'd0: alu_out <= input1 + input2;//load store
             2'd1:
             begin
                 alu_out <= input1 - input2;

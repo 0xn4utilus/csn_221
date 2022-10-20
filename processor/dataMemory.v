@@ -3,11 +3,11 @@
 module dataMemory(clk,
                   active,
                   rw,
-                  index,
+                  indexData,
                   outputMem,
                   inputMem);
     input clk, rw, active;
-    input [31:0] index, inputMem;
+    input [31:0] indexData, inputMem;
     output [31:0] outputMem;
     reg [31:0] outputMemReg;
     
@@ -28,10 +28,10 @@ module dataMemory(clk,
         if (active)                          //decides if read write instruction is received
             case(rw)                         //decides read or write
                 1'b0: begin
-                    outputMemReg = memData[index];
+                    outputMemReg = memData[indexData];
                 end
                 1'b1: begin
-                    memData[index] <= inputMem;
+                    memData[indexData] <= inputMem;
                     outputMemReg = 32'b0;
                 end
                 

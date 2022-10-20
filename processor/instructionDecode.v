@@ -8,28 +8,32 @@ module instructionDecode(clk,
                          PCBranchD,
                          hazardDetected,
                          PCSrcD,
-                         equalD);
-   input [31:0]instruction;
+                         equalD,
+                         notEqualD);
+    input [31:0]instruction;
     output reg[4:0] RsD,RtD,RdD;
-   input clk;
+    input clk;
     output reg [31:0] data1,data2,data2_temp,signExtended,PCBranchD;//signExtended wil store the 32 bit sign extension of instruction[15:0]
     output[31:0] PCReg;
-    output [3:0]ALUControlD;
+    output [3:0] ALUControlD;
     output [1:0] ALUOp;
-   output reg hazardDetected,PCSrcD,equalD;
+    output reg hazardDetected,PCSrcD,equalD,notEqualD;
     reg flag1,flag2;
+
     controlUnit cu(
     .clk(clk),
     .instruction(instruction),
-    .RegWriteD(RegWriteD),
+    .regWriteD(regWriteD),
     .MemToRegD(MemToRegD),
     .MemWriteD(MemWriteD),
     .ALUControlD(ALUControlD),
     .ALUSrcD(ALUSrcD),
     .RegDstD(RegDstD),
     .BranchD(BranchD),
-    .ALUOp(ALUOp)
+    .ALUOp(ALUOp),
+    .BNEType(BNEType)
     );
+    
     input[31:0] valueInput;
     reg [4:0] index;
     
@@ -57,7 +61,7 @@ module instructionDecode(clk,
         #8flag2        <= flagOutput;
         #10 data2_temp <= valueOutput;
         
-        // if (RegWriteD) begin
+        // if (regWriteD) begin
         hazardDetected <= 0;
         case(instruction[31:26])
             6'b000000:
@@ -87,8 +91,10 @@ module instructionDecode(clk,
         RdD                = instruction[15:11];
 
         //beq
-        EqualD=(data1-data2_temp)==0;
-        PCSrcD=BranchD&&EqualD;
+        equalD=(data1-data2_temp)==0;
+        notEqualD=(data1-data2_temp) !=0;
+        if(instruction[31:26] == 6'b000100 )PCSrcD= BranchD & equalD;
+        if(instruction[31:26] == 6'b001000) PCSrcD= BNEType & notEqualD;
         // end
         
     end

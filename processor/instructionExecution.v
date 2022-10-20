@@ -3,21 +3,24 @@ module instructionExecution (clk,
                              MemToRegE,
                              MemWriteE,
                              ALUControlE,
+                             ALUOpE,
                              ALUSrcE,
                              RegDstE,
                              SignImmE,
                              RsE,
                              RtE,
                              RdE,
-                             WriteRegE,
+                             writeRegE,
                              AluOutE,
                              value1,
                              value2);
+
     input clk,ALUSrcE,RegDstE;
     inout RegWriteE,MemToRegE,MemWriteE;
     input [4:0] RsE,RtE,RdE;
-    input [3:0] ALUControlE;
-    output reg [4:0] WriteRegE;
+    input [1:0] ALUOpE;
+    input [3:0] ALUControlE;                                                                                        
+    output reg [4:0] writeRegE;
     reg [31:0] SrcAE,SrcBE;
     output [31:0] AluOutE;
     input [31:0] value1,value2,SignImmE;
@@ -27,7 +30,8 @@ module instructionExecution (clk,
     .input1(SrcAE),
     .input2(SrcBE),
     .ex_cmd(ALUControlE),
-    .alu_out(AluOutE)
+    .alu_out(AluOutE),
+    .ALUOp(ALUOpE)
     );
     
     always @(posedge clk) begin
@@ -39,8 +43,8 @@ module instructionExecution (clk,
         endcase
         
         case (RegDstE)
-            1'b0: WriteRegE <= RtE;
-            1'b1: WriteRegE <= RdE;
+            1'b0: writeRegE <= RtE;
+            1'b1: writeRegE <= RdE;
         endcase
         
     end

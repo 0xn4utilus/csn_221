@@ -10,27 +10,31 @@ module registerFile (clk,
                      valueOutput,
                      readEnable,
                      writeEnable,
-                     regWriteW
-                     ,flagOutput);
+                     regWriteW,
+                     flagOutput
+                     );
     reg regFlags [31:0] ;             //We will initialise all of these elements as 1 in initial block of testbench
     reg [31:0] registers[31:0];
     input regWriteW;
+    
     input[31:0]  valueInput;
     input[4:0] index;
     input writeEnable,readEnable,clk;
     output reg [31:0] valueOutput;
     output reg flagOutput;
+
     always @(posedge clk) begin
         
         registers[0] <= 32'b0;
         if (readEnable)
         begin
             valueOutput <= registers[index];
+
         end
             if (writeEnable)
             begin
                 registers[index] <= valueInput;
-                
+                regFlags[index]<=1;
             end
         flagOutput<=regFlags[index];
         

@@ -1,5 +1,5 @@
 $date
-	Thu Oct 20 22:51:15 2022
+	Fri Oct 21 00:48:07 2022
 $end
 $version
 	Icarus Verilog
@@ -51,8 +51,8 @@ $end
 #50
 0*
 #100
-b1010 )
-b1010 ,
+b10 )
+b10 ,
 1#
 b10 (
 b10 -

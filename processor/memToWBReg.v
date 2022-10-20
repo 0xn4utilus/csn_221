@@ -1,4 +1,4 @@
-module exeToMemReg(regWriteM,
+module memToWBReg(regWriteM,
                    memToRegM,
                    readDataM,
                    ALUOut,
@@ -24,4 +24,5 @@ module exeToMemReg(regWriteM,
         readDataW = readDataM;
         ALUOutW   = ALUOut;
     end
+    
 endmodule

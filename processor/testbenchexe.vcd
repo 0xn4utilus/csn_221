@@ -1,0 +1,138 @@
+$date
+	Fri Oct 21 02:24:01 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module testbenchexe $end
+$var wire 4 ! ALUControlE [3:0] $end
+$var wire 2 " ALUOpE [1:0] $end
+$var wire 1 # ALUSrcE $end
+$var wire 1 $ MemToRegE $end
+$var wire 1 % MemWriteE $end
+$var wire 5 & RdE [4:0] $end
+$var wire 1 ' RegDstE $end
+$var wire 1 ( RegWriteE $end
+$var wire 5 ) RsE [4:0] $end
+$var wire 5 * RtE [4:0] $end
+$var wire 32 + SignImmE [31:0] $end
+$var wire 32 , value1 [31:0] $end
+$var wire 32 - value2 [31:0] $end
+$var wire 5 . writeRegE [4:0] $end
+$var wire 32 / AluOutE [31:0] $end
+$var reg 1 0 clk $end
+$scope module instructionExecution $end
+$var wire 4 1 ALUControlE [3:0] $end
+$var wire 2 2 ALUOpE [1:0] $end
+$var wire 1 # ALUSrcE $end
+$var wire 1 $ MemToRegE $end
+$var wire 1 % MemWriteE $end
+$var wire 5 3 RdE [4:0] $end
+$var wire 1 ' RegDstE $end
+$var wire 1 ( RegWriteE $end
+$var wire 5 4 RsE [4:0] $end
+$var wire 5 5 RtE [4:0] $end
+$var wire 32 6 SignImmE [31:0] $end
+$var wire 1 0 clk $end
+$var wire 32 7 value1 [31:0] $end
+$var wire 32 8 value2 [31:0] $end
+$var wire 32 9 AluOutE [31:0] $end
+$var reg 32 : SrcAE [31:0] $end
+$var reg 32 ; SrcBE [31:0] $end
+$var reg 32 < WriteDataE [31:0] $end
+$var reg 5 = writeRegE [4:0] $end
+$scope module ALU $end
+$var wire 2 > ALUOp [1:0] $end
+$var wire 1 ? PCSrcD $end
+$var wire 1 @ branchD $end
+$var wire 4 A ex_cmd [3:0] $end
+$var wire 32 B input1 [31:0] $end
+$var wire 32 C input2 [31:0] $end
+$var reg 1 D PCSrcD_reg $end
+$var reg 32 E alu_out [31:0] $end
+$var reg 1 F branchPresent $end
+$var reg 1 G flag $end
+$scope module instructionFetch $end
+$var wire 32 H PCBranchD [31:0] $end
+$var wire 1 ? PCSrcD $end
+$var wire 1 I clk $end
+$var wire 1 J hazardDetected $end
+$var wire 1 K write $end
+$var wire 32 L instruction [31:0] $end
+$var wire 32 M PC [31:0] $end
+$var reg 32 N PCReg [31:0] $end
+$var reg 32 O newPCreg [31:0] $end
+$scope module instructionMem $end
+$var wire 32 P PC [31:0] $end
+$var wire 32 Q instruction [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10000110000100000100000 Q
+b0 P
+b0 O
+bx N
+b0 M
+b10000110000100000100000 L
+zK
+zJ
+zI
+bz H
+0G
+xF
+b11111111111111111111111111111110 E
+0D
+b1100 C
+b1010 B
+b1111 A
+z@
+0?
+b1 >
+b11 =
+b1100 <
+b1100 ;
+b1010 :
+b11111111111111111111111111111110 9
+b1100 8
+b1010 7
+b1100100 6
+b1 5
+b0 4
+b11 3
+b1 2
+b1111 1
+10
+b11111111111111111111111111111110 /
+b11 .
+b1100 -
+b1010 ,
+b1100100 +
+b1 *
+b0 )
+z(
+1'
+b11 &
+z%
+z$
+0#
+b1 "
+b1111 !
+$end
+#50
+00
+#100
+10
+#150
+00
+#200
+10
+#250
+00

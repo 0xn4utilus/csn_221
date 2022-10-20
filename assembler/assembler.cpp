@@ -164,6 +164,12 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_MEM = {
     {"SH", make_i_format("101001", "", "", "")},
     {"SW", make_i_format("101011", "", "", "")}};
 
+map<string, i_format> I_TYPE_INSTRUCTIONS_BRANCH = {
+    // branch
+    // need rs,rt,offset
+    {"BEQ", make_i_format("000100", "", "", "")},
+    {"BNE", make_i_format("001000", "", "", "")}};
+
 map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
     // immediate
     // need rs,rt,imm
@@ -259,6 +265,23 @@ string parse_line(string s)
                 I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
                 I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[3]];
                 return I_TYPE_INSTRUCTIONS_IMM[i.first].opcode + I_TYPE_INSTRUCTIONS_IMM[i.first].rs + I_TYPE_INSTRUCTIONS_IMM[i.first].rt + I_TYPE_INSTRUCTIONS_IMM[i.first].imm;
+            }
+        }
+
+        for (const auto i : I_TYPE_INSTRUCTIONS_BRANCH)
+        {
+            string search_pattern = "^" + i.first + "\\s";
+            if (regex_search(s, regex(search_pattern)))
+            {
+                vector<string> v = string_split(s);
+                if (v.size() != 4)
+                {
+                    return "-1";
+                }
+                I_TYPE_INSTRUCTIONS_BRANCH[i.first].rt = REGISTERS[v[1]];
+                I_TYPE_INSTRUCTIONS_BRANCH[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
+                I_TYPE_INSTRUCTIONS_BRANCH[i.first].rs = REGISTERS[v[3]];
+                return I_TYPE_INSTRUCTIONS_BRANCH[i.first].opcode + I_TYPE_INSTRUCTIONS_BRANCH[i.first].rs + I_TYPE_INSTRUCTIONS_BRANCH[i.first].rt + I_TYPE_INSTRUCTIONS_BRANCH[i.first].imm;
             }
         }
 
