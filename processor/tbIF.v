@@ -2,22 +2,38 @@
 
 module testbench ();
     reg clk;
-    wire write,branchPresent;
-    wire [31:0] PC,branchOffset;
-    wire [31:0] newPC,instruction;
+    wire write,PCSrcD;
+    wire [31:0] PC,PCBranchD;
+    wire [31:0] instruction;
     
     initial begin
         $dumpfile("testbench.vcd");
         $dumpvars(0,testbench);
         clk                  = 1;
-        repeat(5000) #50 clk = ~clk ;
+        repeat(5) #50 clk = ~clk ;
     end
 
-    assign PC = 32'b0;
-    assign branchOffset=32'b0;
-    assign branchPresent=1'b0;
+    // no hazard
+
+    // assign PCBranchD=32'b0;
+    // assign PCSrcD=1'b0;
+    // assign write=1'b1;
+    // assign hazardDetected=1'b0;
+
+    // hazard
+
+    assign PCBranchD=32'd8;
+    assign PCSrcD=1'b1;
     assign write=1'b1;
-    instructionFetch instructionFetch(clk,PC,newPC,branchPresent,branchOffset,instruction,write);
+    assign hazardDetected=1'b1;
+
+    instructionFetch instructionFetch(clk,
+                        PC,
+                        instruction,
+                        write,
+                        PCBranchD,
+                        PCSrcD,
+                        hazardDetected);
 endmodule 
 
-// test -> FAIL
+// test -> 

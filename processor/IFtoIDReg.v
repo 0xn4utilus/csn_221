@@ -13,11 +13,8 @@ module IFtoIDReg(instruction,
     
     
     instructionFetch instructionFetch(
-    .instruction(instruction)
-    
-    );
-    programCounter programCounter (
-    .outPC(outPC)
+    .instruction(instruction),
+    .PC(outPC)
     );
     
     reg [31:0]IFtoIDReg_in;
