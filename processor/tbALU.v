@@ -13,8 +13,8 @@ module testbench ();
 
     assign flag = 1'b1;
     assign branchD = 1'b1;
-    assign input1 = 32'b00000000000000000000000000000001;
-    assign input2 = 32'b00000000000000000000000000000100;
+    assign input1 = 32'd1;
+    assign input2 = 32'd2;
     assign ex_cmd = 4'b0010;
     assign ALUOp = 2'd2;
 

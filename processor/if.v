@@ -41,3 +41,4 @@ module instructionFetch(clk,
     end
     
 endmodule
+

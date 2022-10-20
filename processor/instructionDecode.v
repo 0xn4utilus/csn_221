@@ -9,14 +9,14 @@ module instructionDecode(clk,
                          hazardDetected,
                          PCSrcD,
                          equalD);
-    input [31:0]instruction;
+   input [31:0]instruction;
     output reg[4:0] RsD,RtD,RdD;
-    input clk;
+   input clk;
     output reg [31:0] data1,data2,data2_temp,signExtended,PCBranchD;//signExtended wil store the 32 bit sign extension of instruction[15:0]
     output[31:0] PCReg;
     output [3:0]ALUControlD;
     output [1:0] ALUOp;
-    output reg hazardDetected,PCSrcD,equalD;
+   output reg hazardDetected,PCSrcD,equalD;
     reg flag1,flag2;
     controlUnit cu(
     .clk(clk),

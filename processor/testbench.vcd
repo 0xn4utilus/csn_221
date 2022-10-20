@@ -5,7 +5,7 @@ $version
 	Icarus Verilog
 $end
 $timescale
-	1ns
+	1s
 $end
 $scope module testbench $end
 $var wire 32 ! PCBranchD [31:0] $end
@@ -49,6 +49,12 @@ b10000110000100000100000 %
 1"
 b1000 !
 $end
+#4
+b0 $
+b0 )
+b0 *
+#5
+0&
 #50
 bx %
 bx )

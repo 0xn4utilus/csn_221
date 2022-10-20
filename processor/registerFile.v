@@ -21,6 +21,7 @@ module registerFile (clk,
     output reg [31:0] valueOutput;
     output reg flagOutput;
     always @(posedge clk) begin
+        
         registers[0] <= 32'b0;
         if (readEnable)
         begin

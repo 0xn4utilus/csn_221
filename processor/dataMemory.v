@@ -23,6 +23,8 @@ module dataMemory(clk,
     end
     
     always @(posedge clk) begin
+        #2 $display("%0d",memData[1]);
+        #2 $display("%0d",memData[0]);
         if (active)                          //decides if read write instruction is received
             case(rw)                         //decides read or write
                 1'b0: begin

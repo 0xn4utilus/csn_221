@@ -224,7 +224,7 @@ T_4.1 ;
     %end;
     .thread T_4;
 # The file index is used to find the file name in the following table.
-:file_names 5;
+:file_names 4;
     "N/A";
     "<interactive>";
     "tbIF.v";
