@@ -1,20 +1,20 @@
 module IDtoExe(clk,
                regWriteD,
-               MemToRegD,
-               MemWriteD,
+               memToRegD,
+               memWriteD,
                ALUControlD,
                ALUSrcD,
-               RegDstD,
+               regDstD,
                data1,
                data2,
                data11,
                data22,
                regWriteE,
-               MemToRegE,
-               MemWriteE,
+               memToRegE,
+               memWriteE,
                ALUControlE,
                ALUSrcE,
-               RegDstE,
+               regDstE,
                RsD,
                RtD,
                RdD,
@@ -23,22 +23,22 @@ module IDtoExe(clk,
                RtE,
                RdE,
                signExtendedValue1);
-    input  regWriteD,MemToRegD,MemWriteD,ALUSrcD,RegDstD,clk;
+    input  regWriteD,memToRegD,memWriteD,ALUSrcD,regDstD,clk;
     input [3:0] ALUControlD;
     input [4:0] RsD,RtD,RdD;
     input [31:0]signExtendedValue,data1,data2;
-    output reg regWriteE,MemToRegE,MemWriteE,ALUSrcE,RegDstE;
+    output reg regWriteE,memToRegE,memWriteE,ALUSrcE,regDstE;
     output reg[3:0] ALUControlE;
     output reg [4:0] RsE,RtE,RdE;
     output reg [31:0]signExtendedValue1,data11,data22;
     
     always@(posedge clk) begin
         regWriteE          = regWriteD;
-        MemToRegE          = MemToRegD;
-        MemWriteE          = MemWriteD;
+        memToRegE          = memToRegD;
+        memWriteE          = memWriteD;
         ALUControlE        = ALUControlD;
         ALUSrcE            = ALUSrcD;
-        RegDstE            = RegDstD;
+        regDstE            = regDstD;
         RsE                = RsD;
         RtE                = RtD;
         RdE                = RdD;

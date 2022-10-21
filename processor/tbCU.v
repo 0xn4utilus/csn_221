@@ -2,7 +2,7 @@
 
 module testbench ();
     reg clk;
-    wire regWriteD,MemToRegD,MemWriteD,ALUSrcD,RegDstD,BranchD;
+    wire regWriteD,memToRegD,memWriteD,ALUSrcD,regDstD,branchD;
     wire [1:0] ALUOp;
     wire [3:0] ALUControlD;
     wire [31:0] instruction;
@@ -19,8 +19,7 @@ module testbench ();
         $display("%0d",instruction[31:26]);
     end
 
-    controlUn
-    it controlUnit(clk, instruction, regWriteD, MemToRegD, MemWriteD, ALUControlD, ALUSrcD, RegDstD, BranchD, ALUOp);
+    controlUnit controlUnit(clk, instruction, regWriteD, memToRegD, memWriteD, ALUControlD, ALUSrcD, regDstD, branchD, ALUOp);
     
 endmodule
 

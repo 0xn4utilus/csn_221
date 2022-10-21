@@ -2,15 +2,15 @@
 
 module testbenchexe ();
     reg clk;
-    wire ALUSrcE,RegDstE;
-    wire RegWriteE,MemToRegE,MemWriteE;
+    wire ALUSrcE,regDstE;
+    wire regWriteE,memToRegE,memWriteE;
     wire [4:0] RsE,RtE,RdE;
     wire [3:0] ALUControlE;
     wire [4:0] writeRegE;
     
     wire [31:0] AluOutE;
     wire [1:0] ALUOpE;
-    wire [31:0] value1,value2,SignImmE;
+    wire [31:0] value1,value2,signImmE;
     wire [31:0] WriteDataE;
     
     initial begin
@@ -22,13 +22,13 @@ module testbenchexe ();
 
     assign ALUSrcE=1'b0;
     assign ALUControlE= 4'b1111;
-    assign RegDstE = 1'b1;
+    assign regDstE = 1'b1;
     assign RsE = 5'b0;
     assign RtE = 5'd1;
     assign RdE = 5'd3;
     assign value1 = 32'd10;
     assign value2 = 32'd12;
-    assign SignImmE = 32'd100;
+    assign signImmE = 32'd100;
     assign ALUOpE = 2'd1;
 
 
@@ -39,14 +39,14 @@ module testbenchexe ();
   // end
 
     instructionExecution instructionExecution (clk,
-                             RegWriteE,
-                             MemToRegE,
-                             MemWriteE,
+                             regWriteE,
+                             memToRegE,
+                             memWriteE,
                              ALUControlE,
                              ALUOpE,
                              ALUSrcE,
-                             RegDstE,
-                             SignImmE,
+                             regDstE,
+                             signImmE,
                              RsE,
                              RtE,
                              RdE,
@@ -56,7 +56,7 @@ module testbenchexe ();
                              value2);
 
       // always@(*)begin
-      // $display("%0d","%0d","%0d",RegWriteE,MemToRegE,MemWriteE);
+      // $display("%0d","%0d","%0d",regWriteE,memToRegE,memWriteE);
       // end
 endmodule 
 

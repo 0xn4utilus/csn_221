@@ -10,10 +10,10 @@ $end
 $scope module testbench $end
 $var wire 32 ! instruction [31:0] $end
 $var wire 1 " regWriteD $end
-$var wire 1 # RegDstD $end
-$var wire 1 $ MemWriteD $end
-$var wire 1 % MemToRegD $end
-$var wire 1 & BranchD $end
+$var wire 1 # regDstD $end
+$var wire 1 $ memWriteD $end
+$var wire 1 % memToRegD $end
+$var wire 1 & branchD $end
 $var wire 1 ' ALUSrcD $end
 $var wire 2 ( ALUOp [1:0] $end
 $var wire 4 ) ALUControlD [3:0] $end
@@ -24,10 +24,10 @@ $var wire 32 + instruction [31:0] $end
 $var reg 4 , ALUControlD [3:0] $end
 $var reg 2 - ALUOp [1:0] $end
 $var reg 1 ' ALUSrcD $end
-$var reg 1 & BranchD $end
-$var reg 1 % MemToRegD $end
-$var reg 1 $ MemWriteD $end
-$var reg 1 # RegDstD $end
+$var reg 1 & branchD $end
+$var reg 1 % memToRegD $end
+$var reg 1 $ memWriteD $end
+$var reg 1 # regDstD $end
 $var reg 1 " regWriteD $end
 $upscope $end
 $upscope $end

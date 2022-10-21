@@ -3,7 +3,7 @@
 module testbench ();
     reg clk;
     wire write,PCSrcD;
-    wire [31:0] PC,PCBranchD;
+    wire [31:0] PC,PCbranchD;
     wire [31:0] instruction;
     
     initial begin
@@ -15,14 +15,14 @@ module testbench ();
 
     // no hazard
 
-    // assign PCBranchD=32'b0;
+    // assign PCbranchD=32'b0;
     // assign PCSrcD=1'b0;
     // assign write=1'b1;
     // assign hazardDetected=1'b0;
 
     // hazard
 
-    assign PCBranchD=32'd8;
+    assign PCbranchD=32'd8;
     assign PCSrcD=1'b1;
     assign write=1'b1;
     assign hazardDetected=1'b1;
@@ -31,7 +31,7 @@ module testbench ();
                         PC,
                         instruction,
                         write,
-                        PCBranchD,
+                        PCbranchD,
                         PCSrcD,
                         hazardDetected);
 endmodule 

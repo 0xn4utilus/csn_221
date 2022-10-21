@@ -11,14 +11,14 @@ $scope module testbenchexe $end
 $var wire 4 ! ALUControlE [3:0] $end
 $var wire 2 " ALUOpE [1:0] $end
 $var wire 1 # ALUSrcE $end
-$var wire 1 $ MemToRegE $end
-$var wire 1 % MemWriteE $end
+$var wire 1 $ memToRegE $end
+$var wire 1 % memWriteE $end
 $var wire 5 & RdE [4:0] $end
-$var wire 1 ' RegDstE $end
-$var wire 1 ( RegWriteE $end
+$var wire 1 ' regDstE $end
+$var wire 1 ( regWriteE $end
 $var wire 5 ) RsE [4:0] $end
 $var wire 5 * RtE [4:0] $end
-$var wire 32 + SignImmE [31:0] $end
+$var wire 32 + signImmE [31:0] $end
 $var wire 32 , value1 [31:0] $end
 $var wire 32 - value2 [31:0] $end
 $var wire 5 . writeRegE [4:0] $end
@@ -28,14 +28,14 @@ $scope module instructionExecution $end
 $var wire 4 1 ALUControlE [3:0] $end
 $var wire 2 2 ALUOpE [1:0] $end
 $var wire 1 # ALUSrcE $end
-$var wire 1 $ MemToRegE $end
-$var wire 1 % MemWriteE $end
+$var wire 1 $ memToRegE $end
+$var wire 1 % memWriteE $end
 $var wire 5 3 RdE [4:0] $end
-$var wire 1 ' RegDstE $end
-$var wire 1 ( RegWriteE $end
+$var wire 1 ' regDstE $end
+$var wire 1 ( regWriteE $end
 $var wire 5 4 RsE [4:0] $end
 $var wire 5 5 RtE [4:0] $end
-$var wire 32 6 SignImmE [31:0] $end
+$var wire 32 6 signImmE [31:0] $end
 $var wire 1 0 clk $end
 $var wire 32 7 value1 [31:0] $end
 $var wire 32 8 value2 [31:0] $end
@@ -56,7 +56,7 @@ $var reg 32 E alu_out [31:0] $end
 $var reg 1 F branchPresent $end
 $var reg 1 G flag $end
 $scope module instructionFetch $end
-$var wire 32 H PCBranchD [31:0] $end
+$var wire 32 H PCbranchD [31:0] $end
 $var wire 1 ? PCSrcD $end
 $var wire 1 I clk $end
 $var wire 1 J hazardDetected $end

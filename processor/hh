@@ -16,21 +16,21 @@ L_0x7fbd0253b018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
 v0x55f120ab2240_0 .net "ALUSrcE", 0 0, L_0x7fbd0253b018;  1 drivers
 v0x55f120ab22e0_0 .net "AluOutE", 31 0, v0x55f120ab0830_0;  1 drivers
 o0x7fbd025849a8 .functor BUFZ 1, C4<z>; HiZ drive
-v0x55f120ab23d0_0 .net "MemToRegE", 0 0, o0x7fbd025849a8;  0 drivers
+v0x55f120ab23d0_0 .net "memToRegE", 0 0, o0x7fbd025849a8;  0 drivers
 o0x7fbd025849d8 .functor BUFZ 1, C4<z>; HiZ drive
-v0x55f120ab24c0_0 .net "MemWriteE", 0 0, o0x7fbd025849d8;  0 drivers
+v0x55f120ab24c0_0 .net "memWriteE", 0 0, o0x7fbd025849d8;  0 drivers
 L_0x7fbd0253b180 .functor BUFT 1, C4<00011>, C4<0>, C4<0>, C4<0>;
 v0x55f120ab2560_0 .net "RdE", 4 0, L_0x7fbd0253b180;  1 drivers
 L_0x7fbd0253b0a8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
-v0x55f120ab2630_0 .net "RegDstE", 0 0, L_0x7fbd0253b0a8;  1 drivers
+v0x55f120ab2630_0 .net "regDstE", 0 0, L_0x7fbd0253b0a8;  1 drivers
 o0x7fbd02584a68 .functor BUFZ 1, C4<z>; HiZ drive
-v0x55f120ab2700_0 .net "RegWriteE", 0 0, o0x7fbd02584a68;  0 drivers
+v0x55f120ab2700_0 .net "regWriteE", 0 0, o0x7fbd02584a68;  0 drivers
 L_0x7fbd0253b0f0 .functor BUFT 1, C4<00000>, C4<0>, C4<0>, C4<0>;
 v0x55f120ab27d0_0 .net "RsE", 4 0, L_0x7fbd0253b0f0;  1 drivers
 L_0x7fbd0253b138 .functor BUFT 1, C4<00001>, C4<0>, C4<0>, C4<0>;
 v0x55f120ab28a0_0 .net "RtE", 4 0, L_0x7fbd0253b138;  1 drivers
 L_0x7fbd0253b258 .functor BUFT 1, C4<00000000000000000000000001100100>, C4<0>, C4<0>, C4<0>;
-v0x55f120ab2970_0 .net "SignImmE", 31 0, L_0x7fbd0253b258;  1 drivers
+v0x55f120ab2970_0 .net "signImmE", 31 0, L_0x7fbd0253b258;  1 drivers
 v0x55f120ab2a40_0 .net "writeRegE", 4 0, v0x55f120ab1af0_0;  1 drivers
 v0x55f120ab2b10_0 .var "clk", 0 0;
 L_0x7fbd0253b1c8 .functor BUFT 1, C4<00000000000000000000000000001010>, C4<0>, C4<0>, C4<0>;
@@ -41,14 +41,14 @@ E_0x55f120a7ef40 .event edge, v0x55f120ab14b0_0, v0x55f120ab11b0_0, v0x55f120ab1
 S_0x55f120a82610 .scope module, "instructionExecution" "instructionExecution" 2 40, 3 1 0, S_0x55f120a82490;
  .timescale -9 -9;
     .port_info 0 /INPUT 1 "clk"
-    .port_info 1 /INOUT 1 "RegWriteE"
-    .port_info 2 /INOUT 1 "MemToRegE"
-    .port_info 3 /INOUT 1 "MemWriteE"
+    .port_info 1 /INOUT 1 "regWriteE"
+    .port_info 2 /INOUT 1 "memToRegE"
+    .port_info 3 /INOUT 1 "memWriteE"
     .port_info 4 /INPUT 4 "ALUControlE"
     .port_info 5 /INPUT 2 "ALUOpE"
     .port_info 6 /INPUT 1 "ALUSrcE"
-    .port_info 7 /INPUT 1 "RegDstE"
-    .port_info 8 /INPUT 32 "SignImmE"
+    .port_info 7 /INPUT 1 "regDstE"
+    .port_info 8 /INPUT 32 "signImmE"
     .port_info 9 /INPUT 5 "RsE"
     .port_info 10 /INPUT 5 "RtE"
     .port_info 11 /INPUT 5 "RdE"
@@ -60,14 +60,14 @@ v0x55f120ab0e90_0 .net "ALUControlE", 3 0, L_0x7fbd0253b060;  alias, 1 drivers
 v0x55f120ab0f70_0 .net "ALUOpE", 1 0, L_0x7fbd0253b2a0;  alias, 1 drivers
 v0x55f120ab1010_0 .net "ALUSrcE", 0 0, L_0x7fbd0253b018;  alias, 1 drivers
 v0x55f120ab10e0_0 .net "AluOutE", 31 0, v0x55f120ab0830_0;  alias, 1 drivers
-v0x55f120ab11b0_0 .net "MemToRegE", 0 0, o0x7fbd025849a8;  alias, 0 drivers
-v0x55f120ab1250_0 .net "MemWriteE", 0 0, o0x7fbd025849d8;  alias, 0 drivers
+v0x55f120ab11b0_0 .net "memToRegE", 0 0, o0x7fbd025849a8;  alias, 0 drivers
+v0x55f120ab1250_0 .net "memWriteE", 0 0, o0x7fbd025849d8;  alias, 0 drivers
 v0x55f120ab1310_0 .net "RdE", 4 0, L_0x7fbd0253b180;  alias, 1 drivers
-v0x55f120ab13f0_0 .net "RegDstE", 0 0, L_0x7fbd0253b0a8;  alias, 1 drivers
-v0x55f120ab14b0_0 .net "RegWriteE", 0 0, o0x7fbd02584a68;  alias, 0 drivers
+v0x55f120ab13f0_0 .net "regDstE", 0 0, L_0x7fbd0253b0a8;  alias, 1 drivers
+v0x55f120ab14b0_0 .net "regWriteE", 0 0, o0x7fbd02584a68;  alias, 0 drivers
 v0x55f120ab1600_0 .net "RsE", 4 0, L_0x7fbd0253b0f0;  alias, 1 drivers
 v0x55f120ab16e0_0 .net "RtE", 4 0, L_0x7fbd0253b138;  alias, 1 drivers
-v0x55f120ab17c0_0 .net "SignImmE", 31 0, L_0x7fbd0253b258;  alias, 1 drivers
+v0x55f120ab17c0_0 .net "signImmE", 31 0, L_0x7fbd0253b258;  alias, 1 drivers
 v0x55f120ab18a0_0 .var "SrcAE", 31 0;
 v0x55f120ab1960_0 .var "SrcBE", 31 0;
 v0x55f120ab1a30_0 .var "WriteDataE", 31 0;
@@ -106,12 +106,12 @@ S_0x55f120a8b640 .scope module, "instructionFetch" "instructionFetch" 4 30, 5 1 
     .port_info 1 /OUTPUT 32 "PC"
     .port_info 2 /OUTPUT 32 "instruction"
     .port_info 3 /INPUT 1 "write"
-    .port_info 4 /INPUT 32 "PCBranchD"
+    .port_info 4 /INPUT 32 "PCbranchD"
     .port_info 5 /INPUT 1 "PCSrcD"
     .port_info 6 /INPUT 1 "hazardDetected"
 v0x55f120aafe30_0 .net "PC", 31 0, v0x55f120ab0370_0;  1 drivers
 o0x7fbd025843d8 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
-v0x55f120aafef0_0 .net "PCBranchD", 31 0, o0x7fbd025843d8;  0 drivers
+v0x55f120aafef0_0 .net "PCbranchD", 31 0, o0x7fbd025843d8;  0 drivers
 v0x55f120aaffb0_0 .var "PCReg", 31 0;
 v0x55f120ab0070_0 .net "PCSrcD", 0 0, L_0x55f120ac3420;  alias, 1 drivers
 o0x7fbd02584468 .functor BUFZ 1, C4<z>; HiZ drive

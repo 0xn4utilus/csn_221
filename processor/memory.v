@@ -1,13 +1,13 @@
 module memory (           clk,
-                          RegWriteM,
-                          MemToRegM,
-                          MemWriteM,
+                          regWriteM,
+                          memToRegM,
+                          memWriteM,
                           ALUOutM,
                           writeDataM,
-                          WriteRegM,
+                          writeRegM,
                           active,
                           readDataM);
-    input clk,RegWriteM, MemToRegM, WriteRegM, MemWriteM;
+    input clk,regWriteM, memToRegM, writeRegM, memWriteM;
     input [31:0] writeDataM;
     output reg active = 1'b1;
     output reg [31:0] address_reg;
@@ -18,7 +18,7 @@ module memory (           clk,
     dataMemory dataMem(
     .clk(clk),
     .active(active),
-    .rw(MemWriteM),
+    .rw(memWriteM),
     .inputMem(writeDataM),
     .indexData(address),
     .outputMem(readDataM)
@@ -26,7 +26,7 @@ module memory (           clk,
     
     always @(posedge clk) begin
         
-        case(MemWriteM)
+        case(memWriteM)
             1'b0: address_reg <= 31'b0;
             1'b1: address_reg <= ALUOutM;
         endcase

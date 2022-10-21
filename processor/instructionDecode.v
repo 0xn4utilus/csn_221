@@ -5,43 +5,49 @@ module instructionDecode(clk,
                          RsD,
                          RtD,
                          RdD,
-                         PCBranchD,
+                         PCbranchD,
+                         branchD,
                          hazardDetected,
                          PCSrcD,
+                         PCReg,
                          equalD,
-                         notEqualD);
+                         notEqualD,
+                         ALUSrcD,
+                         BNEType);
     input [31:0]instruction;
     output reg[4:0] RsD,RtD,RdD;
-    input clk;
-    output reg [31:0] data1,data2,data2_temp,signExtended,PCBranchD;//signExtended wil store the 32 bit sign extension of instruction[15:0]
-    output[31:0] PCReg;
+    input clk,ALUSrcD,BNEType;
+    output reg [31:0] data1,data2,data2_temp,signExtended,PCbranchD;//signExtended wil store the 32 bit sign extension of instruction[15:0]
+    input [31:0] PCReg;
     output [3:0] ALUControlD;
     output [1:0] ALUOp;
-    output reg hazardDetected,PCSrcD,equalD,notEqualD;
+    output reg hazardDetected,PCSrcD,equalD,notEqualD,branchD;
     reg flag1,flag2;
 
-    controlUnit cu(
-    .clk(clk),
-    .instruction(instruction),
-    .regWriteD(regWriteD),
-    .MemToRegD(MemToRegD),
-    .MemWriteD(MemWriteD),
-    .ALUControlD(ALUControlD),
-    .ALUSrcD(ALUSrcD),
-    .RegDstD(RegDstD),
-    .BranchD(BranchD),
-    .ALUOp(ALUOp),
-    .BNEType(BNEType)
-    );
+    // controlUnit cu(
+    // .clk(clk),
+    // .instruction(instruction),
+    // .regWriteD(regWriteD),
+    // .memToRegD(memToRegD),
+    // .memWriteD(memWriteD),
+    // .ALUControlD(ALUControlD),
+    // .ALUSrcD(ALUSrcD),
+    // .regDstD(regDstD),
+    // .branchD(branchD),
+    // .ALUOp(ALUOp),
+    // .BNEType(BNEType)
+    // );
     
     input[31:0] valueInput;
     reg [4:0] index;
     
     output [31:0] valueOutput;
-    IFtoIDReg IFtoID(
-    .instructionReg(instruction),
-    .PCReg(PCReg)
-    );
+
+    // IFtoIDReg IFtoID(
+    // .instructionReg(instruction),
+    // .PCReg(PCReg)
+    // );
+    
     registerFile regFile(
     .clk(clk),
     .index(index),
@@ -83,7 +89,7 @@ module instructionDecode(clk,
             
         endcase
         signExtended = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
-        PCBranchD <= PCReg+4*signExtended-32'd4; //-4 is done bea
+        PCbranchD <= PCReg+4*signExtended-32'd4; //-4 is done bea
         if (ALUSrcD) data2 = signExtended;
         else data2         = data2_temp;
         RsD                = instruction[25:21];
@@ -93,7 +99,7 @@ module instructionDecode(clk,
         //beq
         equalD=(data1-data2_temp)==0;
         notEqualD=(data1-data2_temp) !=0;
-        if(instruction[31:26] == 6'b000100 )PCSrcD= BranchD & equalD;
+        if(instruction[31:26] == 6'b000100 )PCSrcD= branchD & equalD;
         if(instruction[31:26] == 6'b001000) PCSrcD= BNEType & notEqualD;
         // end
         

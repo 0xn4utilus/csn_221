@@ -24,7 +24,7 @@ module ALU (input1,
     // controlUnit controlUnit(
     // .ALUControlD(ex_cmd),
     // .ALUOp(ALUOp),
-    // .BranchD(BranchD)
+    // .branchD(branchD)
     // );
 
     instructionFetch instructionFetch(

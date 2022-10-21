@@ -2,8 +2,8 @@
 
 module testbench();
     reg clk;
-    wire RegWriteM, MemToRegM, WriteRegM;
-    wire MemWriteM;
+    wire regWriteM, memToRegM, writeRegM;
+    wire memWriteM;
     wire [31:0] writeDataM,readDataM;
     wire  active ;
     wire  [31:0] address_reg;
@@ -15,10 +15,10 @@ module testbench();
         clk                  = 1;
         repeat(5000) #50 clk = ~clk;
     end
-    assign RegWriteM   = 1'b1;
-    assign MemToRegM   = 1'b1;
-    assign WriteRegM   = 1'b0;
-    assign MemWriteM   = 1'b0;
+    assign regWriteM   = 1'b1;
+    assign memToRegM   = 1'b1;
+    assign writeRegM   = 1'b0;
+    assign memWriteM   = 1'b0;
     assign writeDataM  = 32'b00000000000000000000000000000001;
     assign address_reg = 32'b0000000000000000000000000000000;
     assign ALUOutM     = 32'b00000000000000000000000000000001;
@@ -28,12 +28,12 @@ module testbench();
     // end
     
     memory  memory(clk,
-    RegWriteM,
-    MemToRegM,
-    MemWriteM,
+    regWriteM,
+    memToRegM,
+    memWriteM,
     ALUOutM,
     writeDataM,
-    WriteRegM,
+    writeRegM,
     active,
     readDataM);
     

@@ -1,40 +1,40 @@
 module controlUnit(clk,
                    instruction,
                    regWriteD,
-                   MemToRegD,
-                   MemWriteD,
+                   memToRegD,
+                   memWriteD,
                    ALUControlD,
                    ALUSrcD,
-                   RegDstD,
-                   BranchD,
+                   regDstD,
+                   branchD,
                    BNEType, //IT IS ONE WHEN INSTRUCTION IS BNE
                    ALUOp);
     input clk;
     input [31:0] instruction;
-    output  reg regWriteD,MemToRegD,MemWriteD,ALUSrcD,RegDstD,BranchD,BNEType;//BRANCHD left for now
+    output  reg regWriteD,memToRegD,memWriteD,ALUSrcD,regDstD,branchD,BNEType;//BRANCHD left for now
     output reg[3:0]ALUControlD;
     output reg[1:0] ALUOp;
     always @(posedge clk) begin
         ALUOp     <= 2'b0;// LOAD-store
         regWriteD <= 1;// tells about write back
-        MemToRegD <= 0;// write back from  ALU or data mem
-        MemWriteD <= 0;// memory write
+        memToRegD <= 0;// write back from  ALU or data mem
+        memWriteD <= 0;// memory write
         ALUSrcD   <= 0;// r branch o
-        RegDstD   <= 0;// all except r type
-        BranchD   <= 0;//all except branch type
+        regDstD   <= 0;// all except r type
+        branchD   <= 0;//all except branch type
         BNEType<=0;
         case(instruction[31:26])
             6'b000000:// THIS IMPLIES IT IS R TYPE
             begin
                 ALUOp   <= 2'd2;
-                RegDstD <= 1;
+                regDstD <= 1;
                 
             end
             6'b000100://BRANCH
             begin
                 ALUOp     <= 2'd1;
                 regWriteD <= 0;
-                BranchD   <= 1;
+                branchD   <= 1;
             end
             6'b001000: //BNE
             begin
@@ -44,12 +44,12 @@ module controlUnit(clk,
             end
             6'd35:
             begin
-                MemToRegD <= 1;//load
+                memToRegD <= 1;//load
                 ALUSrcD   <= 1;
             end
             6'd43:begin //store
                 regWriteD <= 0 ;
-                MemWriteD <= 1;
+                memWriteD <= 1;
                 ALUSrcD   <= 1;
             end
             6'b000010: ALUSrcD = 1;

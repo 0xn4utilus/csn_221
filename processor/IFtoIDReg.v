@@ -1,5 +1,5 @@
 module IFtoIDReg(instruction,
-                 instructionReg,
+                 instructionD,
                  clk,
                  reset,
                  PCReg,
@@ -7,15 +7,16 @@ module IFtoIDReg(instruction,
     input [31:0] instruction;
     input [31:0] outPC;
     input clk;
-    output reg [31:0] instructionReg;
     input reset;
+
+    output reg [31:0] instructionD;
     output reg [31:0] PCReg;
     
     
-    instructionFetch instructionFetch(
-    .instruction(instruction),
-    .PC(outPC)
-    );
+    // instructionFetch instructionFetch(
+    // .instruction(instruction),
+    // .PC(outPC)
+    // );
     
     reg [31:0]IFtoIDReg_in;
     reg[31:0] PC_in;
@@ -28,9 +29,9 @@ module IFtoIDReg(instruction,
             IFtoIDReg_in <= instruction;
             PC_in        <= outPC+32'd4;
         end
-        instructionReg <= IFtoIDReg_in;
+        instructionD <= IFtoIDReg_in;
         PCReg          <= PC_in;
     end
-    // assign instructionReg = instruction;
+    // assign instructionD = instruction;
     
 endmodule

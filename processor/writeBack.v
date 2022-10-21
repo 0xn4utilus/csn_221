@@ -1,30 +1,30 @@
 module writeBack(memToRegW,
-                 RegWriteW,
+                 regWriteW,
                  readDataW,
                  ALUOutW,
-                 ResultW,
+                 resultW,
                  clk);
-    input memToRegW,clk,RegWriteW;
+    input memToRegW,clk,regWriteW;
     input [31:0] ALUOutW,readDataW;
     input [4:0] WriteRegW;
-    output [31:0] ResultW;
-    reg  [31:0] ResultW_reg;
+    output [31:0] resultW;
+    reg  [31:0] resultW_reg;
     
     registerFile regFile(
     .clk(clk),
     .index(WriteRegW),
-    .valueInput(ResultW),
-    .writeEnable(RegWriteW)
+    .valueInput(resultW),
+    .writeEnable(regWriteW)
     );
     
     always@(posedge clk) begin
         if (memToRegW)begin
-            ResultW_reg <= readDataW;
+            resultW_reg <= readDataW;
         end
         else begin
-            ResultW_reg <= ALUOutW;
+            resultW_reg <= ALUOutW;
         end
     end
-    assign ResultW = ResultW_reg;
+    assign resultW = resultW_reg;
     
 endmodule

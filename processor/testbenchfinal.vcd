@@ -1,0 +1,499 @@
+$date
+	Fri Oct 21 20:34:48 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module finalTestBench $end
+$var wire 1 ! rst $end
+$var reg 1 " clk $end
+$scope module topLevel $end
+$var wire 2 # ALUOpE [1:0] $end
+$var wire 1 $ branchD $end
+$var wire 1 " clk $end
+$var wire 32 % instruction [31:0] $end
+$var wire 1 ! rst $end
+$var wire 32 & signExtendedValue [31:0] $end
+$var wire 32 ' signImmE [31:0] $end
+$var wire 32 ( value1 [31:0] $end
+$var wire 32 ) value2 [31:0] $end
+$var wire 1 * write $end
+$var wire 5 + writeRegE [4:0] $end
+$var wire 32 , signExtendedValue1 [31:0] $end
+$var wire 1 - regWriteE $end
+$var wire 1 . regWriteD $end
+$var wire 1 / regDstE $end
+$var wire 1 0 regDstD $end
+$var wire 1 1 memWriteE $end
+$var wire 1 2 memWriteD $end
+$var wire 1 3 memToRegE $end
+$var wire 1 4 memToRegD $end
+$var wire 32 5 instructionD [31:0] $end
+$var wire 1 6 hazardDetected $end
+$var wire 1 7 flag $end
+$var wire 1 8 equalD $end
+$var wire 32 9 data22 [31:0] $end
+$var wire 32 : data2 [31:0] $end
+$var wire 32 ; data11 [31:0] $end
+$var wire 32 < data1 [31:0] $end
+$var wire 32 = SrcBE [31:0] $end
+$var wire 32 > SrcAE [31:0] $end
+$var wire 5 ? RtE [4:0] $end
+$var wire 5 @ RtD [4:0] $end
+$var wire 5 A RsE [4:0] $end
+$var wire 5 B RsD [4:0] $end
+$var wire 5 C RdE [4:0] $end
+$var wire 5 D RdD [4:0] $end
+$var wire 32 E PCbranchD [31:0] $end
+$var wire 1 F PCSrcD $end
+$var wire 32 G PCReg [31:0] $end
+$var wire 32 H PC [31:0] $end
+$var wire 1 I BNEType $end
+$var wire 32 J AluOutE [31:0] $end
+$var wire 1 K ALUSrcE $end
+$var wire 1 L ALUSrcD $end
+$var wire 2 M ALUOp [1:0] $end
+$var wire 4 N ALUControlE [3:0] $end
+$var wire 4 O ALUControlD [3:0] $end
+$scope module ALU $end
+$var wire 2 P ALUOp [1:0] $end
+$var wire 1 Q PCSrcD $end
+$var wire 1 $ branchD $end
+$var wire 32 R input2 [31:0] $end
+$var wire 32 S input1 [31:0] $end
+$var wire 4 T ex_cmd [3:0] $end
+$var reg 1 U PCSrcD_reg $end
+$var reg 32 V alu_out [31:0] $end
+$var reg 1 W branchPresent $end
+$var reg 1 7 flag $end
+$scope module instructionFetch $end
+$var wire 1 Q PCSrcD $end
+$var wire 32 X PCbranchD [31:0] $end
+$var wire 1 Y clk $end
+$var wire 1 Z hazardDetected $end
+$var wire 1 [ write $end
+$var wire 32 \ instruction [31:0] $end
+$var wire 32 ] PC [31:0] $end
+$var reg 32 ^ PCReg [31:0] $end
+$var reg 32 _ newPCreg [31:0] $end
+$scope module instructionMem $end
+$var wire 32 ` PC [31:0] $end
+$var wire 32 a instruction [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module IDtoExe_top $end
+$var wire 1 " clk $end
+$var wire 32 b signExtendedValue [31:0] $end
+$var wire 1 . regWriteD $end
+$var wire 1 0 regDstD $end
+$var wire 1 2 memWriteD $end
+$var wire 1 4 memToRegD $end
+$var wire 32 c data2 [31:0] $end
+$var wire 32 d data1 [31:0] $end
+$var wire 5 e RtD [4:0] $end
+$var wire 5 f RsD [4:0] $end
+$var wire 5 g RdD [4:0] $end
+$var wire 1 L ALUSrcD $end
+$var wire 4 h ALUControlD [3:0] $end
+$var reg 4 i ALUControlE [3:0] $end
+$var reg 1 K ALUSrcE $end
+$var reg 5 j RdE [4:0] $end
+$var reg 5 k RsE [4:0] $end
+$var reg 5 l RtE [4:0] $end
+$var reg 32 m data11 [31:0] $end
+$var reg 32 n data22 [31:0] $end
+$var reg 1 3 memToRegE $end
+$var reg 1 1 memWriteE $end
+$var reg 1 / regDstE $end
+$var reg 1 - regWriteE $end
+$var reg 32 o signExtendedValue1 [31:0] $end
+$upscope $end
+$scope module IFtoIDReg_top $end
+$var wire 1 " clk $end
+$var wire 32 p instruction [31:0] $end
+$var wire 1 ! reset $end
+$var wire 32 q outPC [31:0] $end
+$var reg 32 r IFtoIDReg_in [31:0] $end
+$var reg 32 s PCReg [31:0] $end
+$var reg 32 t PC_in [31:0] $end
+$var reg 32 u instructionD [31:0] $end
+$upscope $end
+$scope module cu $end
+$var wire 1 " clk $end
+$var wire 32 v instruction [31:0] $end
+$var reg 4 w ALUControlD [3:0] $end
+$var reg 2 x ALUOp [1:0] $end
+$var reg 1 L ALUSrcD $end
+$var reg 1 I BNEType $end
+$var reg 1 y branchD $end
+$var reg 1 4 memToRegD $end
+$var reg 1 2 memWriteD $end
+$var reg 1 0 regDstD $end
+$var reg 1 . regWriteD $end
+$upscope $end
+$scope module instructionDecode_p $end
+$var wire 4 z ALUControlD [3:0] $end
+$var wire 2 { ALUOp [1:0] $end
+$var wire 1 L ALUSrcD $end
+$var wire 1 I BNEType $end
+$var wire 32 | PCReg [31:0] $end
+$var wire 1 " clk $end
+$var wire 32 } instruction [31:0] $end
+$var wire 1 ~ readEnable $end
+$var wire 32 !" valueInput [31:0] $end
+$var wire 1 "" writeEnable $end
+$var wire 32 #" valueOutput [31:0] $end
+$var wire 1 $" flagOutput $end
+$var reg 1 F PCSrcD $end
+$var reg 32 %" PCbranchD [31:0] $end
+$var reg 5 &" RdD [4:0] $end
+$var reg 5 '" RsD [4:0] $end
+$var reg 5 (" RtD [4:0] $end
+$var reg 1 )" branchD $end
+$var reg 32 *" data1 [31:0] $end
+$var reg 32 +" data2 [31:0] $end
+$var reg 32 ," data2_temp [31:0] $end
+$var reg 1 8 equalD $end
+$var reg 1 -" flag1 $end
+$var reg 1 ." flag2 $end
+$var reg 1 6 hazardDetected $end
+$var reg 5 /" index [4:0] $end
+$var reg 1 0" notEqualD $end
+$var reg 32 1" signExtended [31:0] $end
+$scope module regFile $end
+$var wire 1 " clk $end
+$var wire 5 2" index [4:0] $end
+$var wire 1 ~ readEnable $end
+$var wire 1 3" regWriteW $end
+$var wire 32 4" valueInput [31:0] $end
+$var wire 1 "" writeEnable $end
+$var reg 1 $" flagOutput $end
+$var reg 32 5" valueOutput [31:0] $end
+$upscope $end
+$upscope $end
+$scope module instructionExecution_top $end
+$var wire 4 6" ALUControlE [3:0] $end
+$var wire 2 7" ALUOpE [1:0] $end
+$var wire 1 K ALUSrcE $end
+$var wire 32 8" AluOutE [31:0] $end
+$var wire 5 9" RdE [4:0] $end
+$var wire 5 :" RsE [4:0] $end
+$var wire 5 ;" RtE [4:0] $end
+$var wire 1 <" branchD $end
+$var wire 1 " clk $end
+$var wire 1 3 memToRegE $end
+$var wire 1 1 memWriteE $end
+$var wire 1 / regDstE $end
+$var wire 1 - regWriteE $end
+$var wire 32 =" signImmE [31:0] $end
+$var wire 32 >" value1 [31:0] $end
+$var wire 32 ?" value2 [31:0] $end
+$var reg 32 @" SrcAE [31:0] $end
+$var reg 32 A" SrcBE [31:0] $end
+$var reg 32 B" WriteDataE [31:0] $end
+$var reg 5 C" writeRegE [4:0] $end
+$upscope $end
+$scope module instructionFetch_top $end
+$var wire 1 F PCSrcD $end
+$var wire 32 D" PCbranchD [31:0] $end
+$var wire 1 " clk $end
+$var wire 1 6 hazardDetected $end
+$var wire 32 E" instruction [31:0] $end
+$var wire 1 * write $end
+$var wire 32 F" PC [31:0] $end
+$var reg 32 G" PCReg [31:0] $end
+$var reg 32 H" newPCreg [31:0] $end
+$scope module instructionMem $end
+$var wire 32 I" PC [31:0] $end
+$var wire 32 J" instruction [31:0] $end
+$upscope $end
+$upscope $end
+$scope module instructionMem_top $end
+$var wire 32 K" PC [31:0] $end
+$var wire 32 L" instruction [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10000110000100000100000 L"
+b0 K"
+b10000110000100000100000 J"
+b0 I"
+b0 H"
+bx G"
+b0 F"
+b10000110000100000100000 E"
+bx D"
+bx C"
+bz B"
+bx A"
+bz @"
+bz ?"
+bz >"
+bz ="
+z<"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+bz 7"
+bx 6"
+bx 5"
+bz 4"
+z3"
+bx 2"
+bx 1"
+x0"
+bx /"
+x."
+x-"
+bx ,"
+bx +"
+bx *"
+x)"
+bx ("
+bx '"
+bx &"
+bx %"
+x$"
+bx #"
+z""
+bz !"
+z~
+bx }
+bx |
+bz {
+bz z
+0y
+b0 x
+bx w
+b10000110000100000100000 v
+bx u
+b100 t
+bx s
+bx r
+b0 q
+b10000110000100000100000 p
+bz o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bz b
+b10000110000100000100000 a
+b0 `
+b0 _
+bx ^
+b0 ]
+b10000110000100000100000 \
+z[
+zZ
+zY
+bz X
+xW
+bx V
+0U
+bx T
+bz S
+bx R
+0Q
+bz P
+bx O
+bx N
+b0 M
+0L
+xK
+bx J
+0I
+b0 H
+bx G
+xF
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+bz >
+bx =
+bx <
+bx ;
+bx :
+bx 9
+x8
+07
+x6
+bx 5
+04
+x3
+02
+x1
+00
+x/
+1.
+x-
+bz ,
+bx +
+z*
+bz )
+bz (
+bz '
+bz &
+b10000110000100000100000 %
+x$
+bz #
+1"
+0!
+$end
+#30
+06
+#50
+bx %
+bx p
+bx v
+bx E"
+bx J"
+bx L"
+bx H
+bx q
+bx F"
+bx H"
+bx I"
+bx K"
+0"
+#100
+bz =
+bz R
+bz A"
+b10 O
+b10 h
+b10 w
+b100 G
+b100 s
+b100 |
+bx t
+0/
+0K
+01
+03
+1-
+1"
+#150
+0"
+#200
+bx G
+bx s
+bx |
+b10 N
+b10 T
+b10 i
+b10 6"
+1"
+#250
+0"
+#300
+1"
+#350
+0"
+#400
+1"
+#450
+0"
+#500
+1"
+#550
+0"
+#600
+1"
+#650
+0"
+#700
+1"
+#750
+0"
+#800
+1"
+#850
+0"
+#900
+1"
+#950
+0"
+#1000
+1"
+#1050
+0"
+#1100
+1"
+#1150
+0"
+#1200
+1"
+#1250
+0"
+#1300
+1"
+#1350
+0"
+#1400
+1"
+#1450
+0"
+#1500
+1"
+#1550
+0"
+#1600
+1"
+#1650
+0"
+#1700
+1"
+#1750
+0"
+#1800
+1"
+#1850
+0"
+#1900
+1"
+#1950
+0"
+#2000
+1"
+#2050
+0"
+#2100
+1"
+#2150
+0"
+#2200
+1"
+#2250
+0"
+#2300
+1"
+#2350
+0"
+#2400
+1"
+#2450
+0"
+#2500
+1"
+#2530
