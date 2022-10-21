@@ -1,5 +1,5 @@
 $date
-	Fri Oct 21 21:34:59 2022
+	Fri Oct 21 21:47:12 2022
 $end
 $version
 	Icarus Verilog
@@ -11,640 +11,59 @@ $scope module finalTestBench $end
 $var wire 1 ! rst $end
 $var reg 1 " clk $end
 $scope module topLevel $end
-$var wire 4 # ALUControlD [3:0] $end
-$var wire 2 $ ALUOp [1:0] $end
-$var wire 2 % ALUOpE [1:0] $end
-$var wire 32 & ALUOut [31:0] $end
-$var wire 1 ' ALUSrcD $end
-$var wire 1 ( branchD $end
+$var wire 1 # PCSrcD $end
+$var wire 32 $ PCbranchD [31:0] $end
 $var wire 1 " clk $end
-$var wire 5 ) index [4:0] $end
-$var wire 32 * indexData [31:0] $end
-$var wire 32 + inpPC [31:0] $end
-$var wire 32 , inputMem [31:0] $end
-$var wire 1 - memToRegD $end
-$var wire 1 . memWriteD $end
-$var wire 1 / readEnable $end
-$var wire 1 0 regDstD $end
-$var wire 1 1 regWriteD $end
+$var wire 1 % hazardDetected $end
 $var wire 1 ! rst $end
-$var wire 1 2 rw $end
-$var wire 32 3 signExtendedValue [31:0] $end
-$var wire 32 4 signImmE [31:0] $end
-$var wire 32 5 value1 [31:0] $end
-$var wire 32 6 value2 [31:0] $end
-$var wire 32 7 valueInput [31:0] $end
-$var wire 1 8 write $end
-$var wire 32 9 writeDataE [31:0] $end
-$var wire 1 : writeEnable $end
-$var wire 5 ; writeRegW [4:0] $end
-$var wire 5 < writeRegM [4:0] $end
-$var wire 5 = writeRegE [4:0] $end
-$var wire 32 > writeDataM [31:0] $end
-$var wire 32 ? valueOutput [31:0] $end
-$var wire 32 @ signExtendedValue1 [31:0] $end
-$var wire 32 A resultW [31:0] $end
-$var wire 1 B regWriteW $end
-$var wire 1 C regWriteM $end
-$var wire 1 D regWriteE $end
-$var wire 1 E regDstE $end
-$var wire 32 F readDataW [31:0] $end
-$var wire 32 G readDataM [31:0] $end
-$var wire 32 H outputMem [31:0] $end
-$var wire 32 I outPC [31:0] $end
-$var wire 1 J memWriteM $end
-$var wire 1 K memWriteE $end
-$var wire 1 L memToRegW $end
-$var wire 1 M memToRegM $end
-$var wire 1 N memToRegE $end
-$var wire 32 O instructionD [31:0] $end
-$var wire 32 P instruction [31:0] $end
-$var wire 1 Q hazardDetected $end
-$var wire 1 R flagOutput $end
-$var wire 1 S flag $end
-$var wire 1 T equalD $end
-$var wire 32 U data22 [31:0] $end
-$var wire 32 V data2 [31:0] $end
-$var wire 32 W data11 [31:0] $end
-$var wire 32 X data1 [31:0] $end
-$var wire 1 Y active $end
-$var wire 32 Z SrcBE [31:0] $end
-$var wire 32 [ SrcAE [31:0] $end
-$var wire 5 \ RtE [4:0] $end
-$var wire 5 ] RtD [4:0] $end
-$var wire 5 ^ RsE [4:0] $end
-$var wire 5 _ RsD [4:0] $end
-$var wire 5 ` RdE [4:0] $end
-$var wire 5 a RdD [4:0] $end
-$var wire 32 b PCbranchD [31:0] $end
-$var wire 1 c PCSrcD $end
-$var wire 32 d PCReg [31:0] $end
-$var wire 32 e PC [31:0] $end
-$var wire 1 f BNEType $end
-$var wire 32 g AluOutE [31:0] $end
-$var wire 1 h ALUSrcE $end
-$var wire 32 i ALUOutW [31:0] $end
-$var wire 32 j ALUOutM [31:0] $end
-$var wire 4 k ALUControlE [3:0] $end
-$scope module ALU $end
-$var wire 2 l ALUOp [1:0] $end
-$var wire 1 m PCSrcD $end
-$var wire 1 ( branchD $end
-$var wire 32 n input2 [31:0] $end
-$var wire 32 o input1 [31:0] $end
-$var wire 4 p ex_cmd [3:0] $end
-$var reg 1 q PCSrcD_reg $end
-$var reg 32 r alu_out [31:0] $end
-$var reg 1 s branchPresent $end
-$var reg 1 S flag $end
-$scope module instructionFetch $end
-$var wire 32 t PC [31:0] $end
-$var wire 1 m PCSrcD $end
-$var wire 32 u PCbranchD [31:0] $end
-$var wire 1 v clk $end
-$var wire 1 w hazardDetected $end
-$var wire 32 x instruction [31:0] $end
-$var wire 1 y write $end
-$var reg 32 z PCReg [31:0] $end
-$var reg 32 { newPCreg [31:0] $end
-$upscope $end
-$upscope $end
-$scope module IDtoExe_top $end
-$var wire 4 | ALUControlD [3:0] $end
-$var wire 1 ' ALUSrcD $end
-$var wire 1 " clk $end
-$var wire 1 - memToRegD $end
-$var wire 1 . memWriteD $end
-$var wire 1 0 regDstD $end
-$var wire 1 1 regWriteD $end
-$var wire 32 } signExtendedValue [31:0] $end
-$var wire 32 ~ data2 [31:0] $end
-$var wire 32 !" data1 [31:0] $end
-$var wire 5 "" RtD [4:0] $end
-$var wire 5 #" RsD [4:0] $end
-$var wire 5 $" RdD [4:0] $end
-$var reg 4 %" ALUControlE [3:0] $end
-$var reg 1 h ALUSrcE $end
-$var reg 5 &" RdE [4:0] $end
-$var reg 5 '" RsE [4:0] $end
-$var reg 5 (" RtE [4:0] $end
-$var reg 32 )" data11 [31:0] $end
-$var reg 32 *" data22 [31:0] $end
-$var reg 1 N memToRegE $end
-$var reg 1 K memWriteE $end
-$var reg 1 E regDstE $end
-$var reg 1 D regWriteE $end
-$var reg 32 +" signExtendedValue1 [31:0] $end
-$upscope $end
-$scope module IFtoIDReg_top $end
-$var wire 1 " clk $end
-$var wire 1 ! reset $end
-$var wire 32 ," outPC [31:0] $end
-$var wire 32 -" instruction [31:0] $end
-$var reg 32 ." IFtoIDReg_in [31:0] $end
-$var reg 32 /" PCReg [31:0] $end
-$var reg 32 0" PC_in [31:0] $end
-$var reg 32 1" instructionD [31:0] $end
-$upscope $end
-$scope module controlUnit_top $end
-$var wire 1 " clk $end
-$var wire 32 2" instruction [31:0] $end
-$var reg 4 3" ALUControlD [3:0] $end
-$var reg 2 4" ALUOp [1:0] $end
-$var reg 1 5" ALUSrcD $end
-$var reg 1 6" BNEType $end
-$var reg 1 7" branchD $end
-$var reg 1 8" memToRegD $end
-$var reg 1 9" memWriteD $end
-$var reg 1 :" regDstD $end
-$var reg 1 ;" regWriteD $end
-$upscope $end
-$scope module cu $end
-$var wire 1 " clk $end
-$var wire 32 <" instruction [31:0] $end
-$var reg 4 =" ALUControlD [3:0] $end
-$var reg 2 >" ALUOp [1:0] $end
-$var reg 1 ?" ALUSrcD $end
-$var reg 1 f BNEType $end
-$var reg 1 @" branchD $end
-$var reg 1 A" memToRegD $end
-$var reg 1 B" memWriteD $end
-$var reg 1 C" regDstD $end
-$var reg 1 D" regWriteD $end
-$upscope $end
-$scope module dataMemory_top $end
-$var wire 1 " clk $end
-$var wire 32 E" indexData [31:0] $end
-$var wire 32 F" inputMem [31:0] $end
-$var wire 32 G" outputMem [31:0] $end
-$var wire 1 2 rw $end
-$var wire 1 Y active $end
-$var reg 32 H" outputMemReg [31:0] $end
-$var integer 32 I" i [31:0] $end
-$upscope $end
-$scope module exeToMemReg_top $end
-$var wire 32 J" ALUOut [31:0] $end
-$var wire 1 " clk $end
-$var wire 1 N memToRegE $end
-$var wire 1 K memWriteE $end
-$var wire 1 D regWriteE $end
-$var wire 32 K" writeDataE [31:0] $end
-$var wire 5 L" writeRegE [4:0] $end
-$var reg 32 M" ALUOutM [31:0] $end
-$var reg 1 M memToRegM $end
-$var reg 1 J memWriteM $end
-$var reg 1 C regWriteM $end
-$var reg 32 N" writeDataM [31:0] $end
-$var reg 5 O" writeRegM [4:0] $end
-$upscope $end
-$scope module instructionDecode_p $end
-$var wire 4 P" ALUControlD [3:0] $end
-$var wire 2 Q" ALUOp [1:0] $end
-$var wire 1 ' ALUSrcD $end
-$var wire 1 f BNEType $end
-$var wire 32 R" PCReg [31:0] $end
-$var wire 1 " clk $end
-$var wire 32 S" instruction [31:0] $end
-$var wire 1 T" readEnable $end
-$var wire 32 U" valueInput [31:0] $end
-$var wire 1 V" writeEnable $end
-$var wire 32 W" valueOutput [31:0] $end
-$var wire 1 X" flagOutput $end
-$var reg 1 c PCSrcD $end
-$var reg 32 Y" PCbranchD [31:0] $end
-$var reg 5 Z" RdD [4:0] $end
-$var reg 5 [" RsD [4:0] $end
-$var reg 5 \" RtD [4:0] $end
-$var reg 1 ]" branchD $end
-$var reg 32 ^" data1 [31:0] $end
-$var reg 32 _" data2 [31:0] $end
-$var reg 32 `" data2_temp [31:0] $end
-$var reg 1 T equalD $end
-$var reg 1 a" flag1 $end
-$var reg 1 b" flag2 $end
-$var reg 1 Q hazardDetected $end
-$var reg 5 c" index [4:0] $end
-$var reg 1 d" notEqualD $end
-$var reg 32 e" signExtended [31:0] $end
-$scope module regFile $end
-$var wire 1 " clk $end
-$var wire 5 f" index [4:0] $end
-$var wire 1 T" readEnable $end
-$var wire 1 g" regWriteW $end
-$var wire 32 h" valueInput [31:0] $end
-$var wire 1 V" writeEnable $end
-$var reg 1 X" flagOutput $end
-$var reg 32 i" valueOutput [31:0] $end
-$var integer 32 j" i [31:0] $end
-$upscope $end
-$upscope $end
-$scope module instructionExecution_top $end
-$var wire 4 k" ALUControlE [3:0] $end
-$var wire 2 l" ALUOpE [1:0] $end
-$var wire 1 h ALUSrcE $end
-$var wire 32 m" AluOutE [31:0] $end
-$var wire 5 n" RdE [4:0] $end
-$var wire 5 o" RsE [4:0] $end
-$var wire 5 p" RtE [4:0] $end
-$var wire 1 q" branchD $end
-$var wire 1 " clk $end
-$var wire 1 N memToRegE $end
-$var wire 1 K memWriteE $end
-$var wire 1 E regDstE $end
-$var wire 1 D regWriteE $end
-$var wire 32 r" signImmE [31:0] $end
-$var wire 32 s" value1 [31:0] $end
-$var wire 32 t" value2 [31:0] $end
-$var reg 32 u" SrcAE [31:0] $end
-$var reg 32 v" SrcBE [31:0] $end
-$var reg 32 w" WriteDataE [31:0] $end
-$var reg 5 x" writeRegE [4:0] $end
-$upscope $end
+$var wire 1 & write $end
+$var wire 32 ' instruction [31:0] $end
+$var wire 32 ( PC [31:0] $end
 $scope module instructionFetch_top $end
-$var wire 1 c PCSrcD $end
-$var wire 32 y" PCbranchD [31:0] $end
+$var wire 1 # PCSrcD $end
+$var wire 32 ) PCbranchD [31:0] $end
 $var wire 1 " clk $end
-$var wire 1 Q hazardDetected $end
-$var wire 32 z" instruction [31:0] $end
-$var wire 1 8 write $end
-$var wire 32 {" PC [31:0] $end
-$var reg 32 |" PCReg [31:0] $end
-$var reg 32 }" newPCreg [31:0] $end
+$var wire 1 % hazardDetected $end
+$var wire 1 & write $end
+$var wire 32 * instruction [31:0] $end
+$var wire 32 + PC [31:0] $end
+$var reg 32 , PCReg [31:0] $end
+$var reg 32 - newPCreg [31:0] $end
 $upscope $end
 $scope module instructionMem_top $end
-$var wire 32 ~" PC [31:0] $end
-$var wire 1 !# rst $end
-$var wire 32 "# instruction [31:0] $end
-$upscope $end
-$scope module memToWBReg_top $end
-$var wire 32 ## ALUOut [31:0] $end
-$var wire 1 " clk $end
-$var wire 1 M memToRegM $end
-$var wire 1 C regWriteM $end
-$var wire 5 $# writeRegM [4:0] $end
-$var wire 32 %# readDataM [31:0] $end
-$var reg 32 &# ALUOutW [31:0] $end
-$var reg 1 L memToRegW $end
-$var reg 32 '# readDataW [31:0] $end
-$var reg 1 B regWriteW $end
-$var reg 5 (# writeRegW [4:0] $end
-$upscope $end
-$scope module memory_top $end
-$var wire 32 )# ALUOutM [31:0] $end
-$var wire 32 *# address [31:0] $end
-$var wire 1 " clk $end
-$var wire 1 M memToRegM $end
-$var wire 1 J memWriteM $end
-$var wire 1 C regWriteM $end
-$var wire 32 +# writeDataM [31:0] $end
-$var wire 5 ,# writeRegM [4:0] $end
-$var wire 32 -# readDataM [31:0] $end
-$var reg 1 Y active $end
-$var reg 32 .# address_reg [31:0] $end
-$scope module dataMem $end
-$var wire 1 Y active $end
-$var wire 1 " clk $end
-$var wire 32 /# indexData [31:0] $end
-$var wire 32 0# inputMem [31:0] $end
-$var wire 32 1# outputMem [31:0] $end
-$var wire 1 J rw $end
-$var reg 32 2# outputMemReg [31:0] $end
-$var integer 32 3# i [31:0] $end
-$upscope $end
-$upscope $end
-$scope module programCounter_top $end
-$var wire 32 4# inpPC [31:0] $end
-$var wire 32 5# outPC [31:0] $end
-$var wire 1 : writeEnable $end
-$var reg 32 6# outPCReg [31:0] $end
-$upscope $end
-$scope module registerFile_top $end
-$var wire 1 " clk $end
-$var wire 5 7# index [4:0] $end
-$var wire 1 / readEnable $end
-$var wire 1 B regWriteW $end
-$var wire 32 8# valueInput [31:0] $end
-$var wire 1 : writeEnable $end
-$var reg 1 R flagOutput $end
-$var reg 32 9# valueOutput [31:0] $end
-$var integer 32 :# i [31:0] $end
-$upscope $end
-$scope module writeBack_top $end
-$var wire 32 ;# ALUOutW [31:0] $end
-$var wire 5 <# WriteRegW [4:0] $end
-$var wire 1 " clk $end
-$var wire 1 L memToRegW $end
-$var wire 32 =# readDataW [31:0] $end
-$var wire 1 B regWriteW $end
-$var wire 32 ># resultW [31:0] $end
-$var reg 32 ?# resultW_reg [31:0] $end
-$scope module regFile $end
-$var wire 1 " clk $end
-$var wire 5 @# index [4:0] $end
-$var wire 1 A# readEnable $end
-$var wire 1 B# regWriteW $end
-$var wire 32 C# valueInput [31:0] $end
-$var wire 1 B writeEnable $end
-$var reg 1 D# flagOutput $end
-$var reg 32 E# valueOutput [31:0] $end
-$var integer 32 F# i [31:0] $end
-$upscope $end
+$var wire 32 . PC [31:0] $end
+$var wire 1 / rst $end
+$var wire 32 0 instruction [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b100000 F#
-bx E#
-xD#
-bx C#
-zB#
-zA#
-bz @#
-bx ?#
-bx >#
-bx =#
-bz <#
-bz ;#
-b100000 :#
-bx 9#
-bz 8#
-bz 7#
-bx 6#
-bx 5#
-bz 4#
-b1000000000 3#
-bx 2#
-bx 1#
-bz 0#
-bx /#
-bx .#
-bx -#
-bx ,#
-bz +#
-bx *#
-bz )#
-bx (#
-bx '#
-bz &#
-bx %#
-bx $#
-bz ##
-b100000000000010000000000000101 "#
-z!#
-b0 ~"
-b0 }"
-bx |"
-b0 {"
-bx z"
-bx y"
-bx x"
-bz w"
-bx v"
-bz u"
-bz t"
-bz s"
-bz r"
-zq"
-bx p"
-bx o"
-bx n"
-bx m"
-bz l"
-bx k"
-b100000 j"
-bx i"
-bz h"
-zg"
-bx f"
-bx e"
-xd"
-bx c"
-xb"
-xa"
-bx `"
-bx _"
-bx ^"
-x]"
-bx \"
-bx ["
-bx Z"
-bx Y"
-xX"
-bx W"
-zV"
-bz U"
-zT"
-bx S"
-bx R"
-bz Q"
-bz P"
-bx O"
-bz N"
-bz M"
-bx L"
-bz K"
-bz J"
-b1000000000 I"
-bx H"
-bx G"
-bz F"
-bz E"
-1D"
-0C"
-0B"
-0A"
-0@"
-0?"
-b0 >"
-bx ="
-b100000000000010000000000000101 <"
-1;"
-0:"
-09"
-08"
-07"
-06"
-05"
-b0 4"
-bx 3"
-b100000000000010000000000000101 2"
-bx 1"
-b100 0"
-bx /"
-bx ."
-b100000000000010000000000000101 -"
-b0 ,"
-bz +"
-bx *"
-bx )"
-bx ("
-bx '"
-bx &"
-bx %"
-bx $"
-bx #"
-bx ""
-bx !"
-bx ~
-bz }
-bx |
-b0 {
-bx z
-zy
-bz x
-zw
-zv
-bz u
-b0 t
-xs
-bx r
-0q
-bx p
-bz o
-bx n
-0m
-bz l
-bx k
-bz j
-bz i
-xh
-bx g
-0f
-b0 e
-bx d
-xc
-bx b
-bx a
-bx `
-bx _
-bx ^
-bx ]
-bx \
-bz [
-bx Z
-1Y
-bx X
-bx W
-bx V
-bx U
-xT
-0S
-xR
-xQ
-b100000000000010000000000000101 P
-bx O
-xN
-xM
-xL
-xK
-xJ
-bx I
-bx H
-bx G
-bx F
-xE
-xD
-xC
-xB
-bx A
-bz @
-bx ?
-bz >
-bx =
-bx <
-bx ;
-z:
-bz 9
-z8
-bz 7
-bz 6
-bz 5
-bz 4
-bz 3
-z2
-11
-00
+b100000000000010000000000000101 0
 z/
-0.
-0-
-bz ,
-bz +
-bz *
+b0 .
+b0 -
+b0 ,
+b0 +
+b100000000000010000000000000101 *
 bz )
-x(
-0'
-bz &
-bz %
-b0 $
-bx #
+b0 (
+b100000000000010000000000000101 '
+z&
+0%
+bz $
+z#
 1"
 0!
 $end
-#30
-0Q
 #50
-bx P
-bx -"
-bx 2"
-bx <"
-bx "#
-bx e
-bx ,"
-bx {"
-bx }"
-bx ~"
 0"
 #100
-bz A
-bz >#
-bz C#
-bz ?#
-b0 *#
-b0 /#
-b0 .#
-b10 #
-b10 |
-b10 3"
-bz Z
-bz n
-bz v"
-b10 ="
-b100 d
-b100 /"
-b100 R"
-bx 0"
-0L
-1B
-0J
-0M
-1C
-0E
-0h
-0K
-0N
-1D
 1"
-#104
-b0 G
-b0 %#
-b0 -#
-b0 1#
-b0 2#
 #150
 0"
 #200
-bx d
-bx /"
-bx R"
-b10 k
-b10 p
-b10 %"
-b10 k"
-b0 F
-b0 '#
-b0 =#
 1"
 #250
 0"
@@ -738,4 +157,4 @@ b0 =#
 0"
 #2500
 1"
-#2530
+#2502

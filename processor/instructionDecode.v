@@ -23,7 +23,9 @@ module instructionDecode(clk,
     output [1:0] ALUOp;
     output reg hazardDetected,PCSrcD,equalD,notEqualD,branchD;
     reg flag1,flag2;
-
+    initial begin
+        hazardDetected=1;
+    end
     // controlUnit cu(
     // .clk(clk),
     // .instruction(instruction),
