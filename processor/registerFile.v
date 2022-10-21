@@ -22,7 +22,13 @@ module registerFile (clk,
     input writeEnable,readEnable,clk;
     output reg [31:0] valueOutput;
     output reg flagOutput;
-
+    integer i;
+    initial begin 
+        for (i = 0; i < 32; i = i + 1) begin
+            regFlags[i] <= 1'b1;
+            registers[i]<=32'b0;
+        end
+    end
     always @(posedge clk) begin
         
         registers[0] <= 32'b0;

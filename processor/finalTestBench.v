@@ -2,7 +2,9 @@ module finalTestBench();
     reg clk;
     wire rst;
     
+    
     initial begin
+        
         $dumpfile("testbenchfinal.vcd");
         $dumpvars(0,finalTestBench);
         clk               = 1;

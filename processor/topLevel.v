@@ -4,7 +4,7 @@ module topLevel(input clk,
     wire rst;
     wire[31:0] input1, input2,alu_out,instruction,instructionD,inputMem,outputMem,value1;
     wire [31:0] outPC,outputMemReg,ALUOut, writeDataE,ALUOutM, writeDataM,signExtendedValue,data1,data2,signExtendedValue1,data11,data22,data2_temp,signExtended,PCbranchD,PCReg,valueInput,valueOutput,indexData;
-    wire [31:0]inpPC,SrcAE,SrcBE,AluOutE,value2,signImmE,PC,newPCreg,address_reg,readDataM,address,readDataW,ALUOutW,ResultW_reg,ResultW;
+    wire [31:0]inpPC,SrcAE,SrcBE,AluOutE,value2,signImmE,PC,newPCreg,address_reg,readDataM,address,readDataW,ALUOutW,resultW_reg,resultW;
     wire PCSrcD, branchD,flag,branchPresent,regWriteD,memToRegD,regWriteW,memToRegW,flagOutput;
     wire memWriteD,ALUSrcD,regDstD,regWriteE, memToRegE, memWriteE,regWriteM, memToRegM, memWriteM,ALUSrcE,regDstE,hazardDetected,flag1,flag2,writeEnable,readEnable,BNEType;
     wire [3:0] ex_cmd,ALUControlD,ALUControlE;
@@ -14,7 +14,7 @@ module topLevel(input clk,
     instructionFetch instructionFetch_top(
     .clk(clk),
     .PC(PC),
-    .instruction(instruction),
+    .instruction(instructionD),
     .write(write),
     .PCbranchD(PCbranchD),
     .PCSrcD(PCSrcD),
@@ -128,99 +128,99 @@ module topLevel(input clk,
     .branchD(branchD)
     );
 
-    // controlUnit controlUnit_top(
-    // .clk(clk),
-    // .instruction(instruction),
-    // .regWriteD(regWriteD),
-    // .memToRegD(memToRegD),
-    // .memWriteD(memWriteD),
-    // .ALUControlD(ALUControlD),
-    // .ALUSrcD(ALUSrcD),
-    // .regDstD(regDstD),
-    // .branchD(branchD),
-    // .ALUOp(ALUOp)
+    controlUnit controlUnit_top(
+    .clk(clk),
+    .instruction(instruction),
+    .regWriteD(regWriteD),
+    .memToRegD(memToRegD),
+    .memWriteD(memWriteD),
+    .ALUControlD(ALUControlD),
+    .ALUSrcD(ALUSrcD),
+    .regDstD(regDstD),
+    .branchD(branchD),
+    .ALUOp(ALUOp)
     
-    // );
-    
-    
-    // dataMemory dataMemory_top(
-    // .clk(clk),
-    // .active(active),
-    // .rw(rw),
-    // .indexData(indexData),
-    // .outputMem(outputMem),
-    // .inputMem(inputMem)
-    // );
-    
-    // exeToMemReg exeToMemReg_top(
-    // .regWriteE(regWriteE),
-    // .memToRegE(memToRegE),
-    // .memWriteE(memWriteE),
-    // .ALUOut(ALUOut),
-    // .writeDataE(writeDataE),
-    // .writeRegE(writeRegE),
-    // .regWriteM(regWriteM),
-    // .memToRegM(memToRegM),
-    // .memWriteM(memWriteM),
-    // .ALUOutM(ALUOutM),
-    // .writeDataM(writeDataM),
-    // .writeRegM(writeRegM),
-    // .clk(clk)
-    // );
+    );
     
     
+    dataMemory dataMemory_top(
+    .clk(clk),
+    .active(active),
+    .rw(rw),
+    .indexData(indexData),
+    .outputMem(outputMem),
+    .inputMem(inputMem)
+    );
     
-    // memory memory_top(
-    // .clk(clk),
-    // .regWriteM(regWriteM),
-    // .memToRegM(memToRegM),
-    // .memWriteM(memWriteM),
-    // .ALUOutM(ALUOutM),
-    // .writeDataM(writeDataM),
-    // .writeRegM(writeRegM),
-    // .active(active),
-    // .readDataM(readDataM)
-    // );
-    
-    // memToWBReg memToWBReg_top(
-    // .regWriteM(regWriteM),
-    // .memToRegM(memToRegM),
-    // .readDataM(readDataM),
-    // .ALUOut(ALUOut),
-    // .writeRegM(writeRegM),
-    // .regWriteW(regWriteW),
-    // .memToRegW(memToRegW),
-    // .readDataW(readDataW),
-    // .ALUOutW(ALUOutW),
-    // .writeRegW(writeRegW),
-    // .clk(clk)
-    // );
-    
-    // programCounter programCounter_top(
-    // .inpPC(inpPC),
-    // .outPC(outPC),
-    // .writeEnable(writeEnable)
-    // );
-    
-    // registerFile registerFile_top(
-    // .clk(clk),
-    // .index(index),
-    // .valueInput(valueInput),
-    // .valueOutput(valueOutput),
-    // .readEnable(readEnable),
-    // .writeEnable(writeEnable),
-    // .regWriteW(regWriteW),
-    // .flagOutput(flagOutput)
-    // );
+    exeToMemReg exeToMemReg_top(
+    .regWriteE(regWriteE),
+    .memToRegE(memToRegE),
+    .memWriteE(memWriteE),
+    .ALUOut(ALUOut),
+    .writeDataE(writeDataE),
+    .writeRegE(writeRegE),
+    .regWriteM(regWriteM),
+    .memToRegM(memToRegM),
+    .memWriteM(memWriteM),
+    .ALUOutM(ALUOutM),
+    .writeDataM(writeDataM),
+    .writeRegM(writeRegM),
+    .clk(clk)
+    );
     
     
-    // writeBack writeBack_top(
-    // .memToRegW(memToRegW),
-    // .regWriteW(regWriteW),
-    // .readDataW(readDataW),
-    // .ALUOutW(ALUOutW),
-    // .ResultW(ResultW),
-    // .clk(clk)
-    // );
+    
+    memory memory_top(
+    .clk(clk),
+    .regWriteM(regWriteM),
+    .memToRegM(memToRegM),
+    .memWriteM(memWriteM),
+    .ALUOutM(ALUOutM),
+    .writeDataM(writeDataM),
+    .writeRegM(writeRegM),
+    .active(active),
+    .readDataM(readDataM)
+    );
+    
+    memToWBReg memToWBReg_top(
+    .regWriteM(regWriteM),
+    .memToRegM(memToRegM),
+    .readDataM(readDataM),
+    .ALUOut(ALUOut),
+    .writeRegM(writeRegM),
+    .regWriteW(regWriteW),
+    .memToRegW(memToRegW),
+    .readDataW(readDataW),
+    .ALUOutW(ALUOutW),
+    .writeRegW(writeRegW),
+    .clk(clk)
+    );
+    
+    programCounter programCounter_top(
+    .inpPC(inpPC),
+    .outPC(outPC),
+    .writeEnable(writeEnable)
+    );
+    
+    registerFile registerFile_top(
+    .clk(clk),
+    .index(index),
+    .valueInput(valueInput),
+    .valueOutput(valueOutput),
+    .readEnable(readEnable),
+    .writeEnable(writeEnable),
+    .regWriteW(regWriteW),
+    .flagOutput(flagOutput)
+    );
+    
+    
+    writeBack writeBack_top(
+    .memToRegW(memToRegW),
+    .regWriteW(regWriteW),
+    .readDataW(readDataW),
+    .ALUOutW(ALUOutW),
+    .resultW(resultW),
+    .clk(clk)
+    );
 endmodule
     //

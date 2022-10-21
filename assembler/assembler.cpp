@@ -385,7 +385,7 @@ int main()
         return 0;
     }
 
-    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[31:0] instMem[511:0];\n\n\tinitial begin\n";
+    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[7:0] instMem[511:0];\n\n\tinitial begin\n";
 
     int j=0;
 

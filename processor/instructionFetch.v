@@ -15,10 +15,10 @@ module instructionFetch(clk,
     
     assign PC = newPCreg;
     
-    instructionMem instructionMem(
-    .PC(PC),
-    .instruction(instruction)
-    );
+    // instructionMem instructionMem(
+    // .PC(PC),
+    // .instruction(instruction)
+    // );
     
     always @(posedge clk) begin
         if (!hazardDetected) begin

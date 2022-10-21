@@ -7,14 +7,14 @@ module memory (           clk,
                           writeRegM,
                           active,
                           readDataM);
-    input clk,regWriteM, memToRegM, writeRegM, memWriteM;
+    input clk,regWriteM, memToRegM,  memWriteM;
     input [31:0] writeDataM;
     output reg active = 1'b1;
     output reg [31:0] address_reg;
     output[31:0] readDataM;
     output [31:0] address;
     inout [31:0] ALUOutM;
-    
+    input [4:0] writeRegM;
     dataMemory dataMem(
     .clk(clk),
     .active(active),
