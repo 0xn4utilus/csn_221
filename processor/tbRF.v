@@ -21,7 +21,7 @@ module testbench ();
     //   always @(*) begin
     //     $display("%0d",valueOutput);
     // end
-    registerFile registerFile(clk, index, valueInput, valueOutput, readEnable, writeEnable, regWriteW, flagOutput);
+    registerFile registerFile(clk, index1,index2, valueInput, valueOutput1, valueOutput1,readEnable, writeEnable, regWriteW, flagOutput1,flagOutput2);
 endmodule
 
 //unable to read register file other things passed test

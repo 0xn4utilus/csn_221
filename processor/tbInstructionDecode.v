@@ -7,7 +7,7 @@ reg [31:0] valueInput;
  
   reg [4:0] index;
   wire [4:0] RsD,RtD,RdD;
-  wire [31:0] data1,data2,data2_temp,signExtended,PCbranchD;
+  wire [31:0] data1,data2,data2_temp,signImmD,PCbranchD;
   wire [31:0] PCReg;
   wire [3:0] ALUControlD;
   wire [1:0] ALUOp;

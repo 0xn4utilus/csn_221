@@ -10,8 +10,8 @@ module ALU (input1,
             ALUOp,
             branchD);
     input [31:0] input1, input2;
-    reg PCSrcD_reg;
-    output PCSrcD;
+    // reg PCSrcD_reg;
+    // output reg PCSrcD;
     input [3:0] ex_cmd;
     input [1:0] ALUOp;
     
@@ -26,10 +26,10 @@ module ALU (input1,
     // .ALUOp(ALUOp),
     // .branchD(branchD)
     // );
-
-    instructionFetch instructionFetch(
-    .PCSrcD(PCSrcD)
-    );
+    
+    // instructionFetch instructionFetch(
+    // .PCSrcD(PCSrcD)
+    // );
     
     always @(*) begin
         flag <= 32'd0;
@@ -63,8 +63,11 @@ module ALU (input1,
             end
         endcase
         
-        PCSrcD_reg = flag & branchD;
+        // PCSrcD = flag & branchD;
     end
+    // always@(*)begin
+    //     $display("ftyf %0d",branchD);
+    // end
 
-    assign PCSrcD = PCSrcD_reg;
+    // assign PCSrcD = PCSrcD_reg;
 endmodule

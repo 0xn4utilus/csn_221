@@ -13,16 +13,26 @@ module instructionDecode(clk,
                          equalD,
                          notEqualD,
                          ALUSrcD,
-                         BNEType);
+                         BNEType,
+                         index1,
+                         index2,
+                         flag1,
+                         flag2,
+                         flagALU,
+                         valueOutput1,
+                         valueOutput2,
+                         signImmD
+                         );
     input [31:0]instruction;
+    input flagALU;
     output reg[4:0] RsD,RtD,RdD;
     input clk,ALUSrcD,BNEType;
-    output reg [31:0] data1,data2,data2_temp,signExtended,PCbranchD;//signExtended wil store the 32 bit sign extension of instruction[15:0]
+    output reg [31:0] data1,data2,data2_temp,signImmD,PCbranchD;//signImmD wil store the 32 bit sign extension of instruction[15:0]
     input [31:0] PCReg;
     output [3:0] ALUControlD;
     output [1:0] ALUOp;
-    output reg hazardDetected,PCSrcD,equalD,notEqualD,branchD;
-    reg flag1,flag2;
+    output reg hazardDetected,PCSrcD,equalD,notEqualD;
+    input flag1,flag2,branchD;
     initial begin
         hazardDetected=1;
     end
@@ -41,36 +51,41 @@ module instructionDecode(clk,
     // );
     
     input[31:0] valueInput;
-    reg [4:0] index;
+    output reg [4:0] index1,index2;
     
-    output [31:0] valueOutput;
+    input [31:0] valueOutput1,valueOutput2;
 
     // IFtoIDReg IFtoID(
     // .instructionReg(instruction),
     // .PCReg(PCReg)
     // );
     
-    registerFile regFile(
-    .clk(clk),
-    .index(index),
-    .valueInput(valueInput),
-    .valueOutput(valueOutput),
-    .readEnable(readEnable),
-    .writeEnable(writeEnable),
-    .flagOutput(flagOutput)
-    // registers[instruction[25:21]] //wrong syntax for data1
-    // registers[instruction[20:16]] //this is data2_temp
-    );
+    // registerFile regFile(
+    // .clk(clk),
+    // .index1(index1),
+    // .index2(index2),
+    // .valueInput(valueInput),
+    // .valueOutput1(valueOutput1),
+    // .valueOutput2(valueOutput2),
+    // .readEnable(readEnable),
+    // .writeEnable(writeEnable),
+    // .flagOutput1(flagOutput1),
+    // .flagOutput2(flagOutput2)
+    // // registers[instruction[25:21]] //wrong syntax for data1
+    // // registers[instruction[20:16]] //this is data2_temp
+    // );
+    always @(*) begin
+        index1          <= instruction[25:21];
+        index2          <= instruction[20:16];
+        data1       <= valueOutput1;
+        // flag1        <= flagOutput1;
+        // flag2        <= flagOutput2;
+        data2 <= valueOutput2;
+    end
+    
     always@(posedge clk) begin
-        index          <= instruction[25:21];
-        #2 data1       <= valueOutput;
-        #4flag1        <= flagOutput;
-        #6 index       <= instruction[20:16];
-        #8flag2        <= flagOutput;
-        #10 data2_temp <= valueOutput;
         
         // if (regWriteD) begin
-        hazardDetected <= 0;
         case(instruction[31:26])
             6'b000000:
             begin
@@ -88,21 +103,23 @@ module instructionDecode(clk,
             begin
                 hazardDetected <= (!flag1);
             end
-            
+            default : hazardDetected <= 0;
         endcase
-        signExtended = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
-        PCbranchD <= PCReg+4*signExtended-32'd4; //-4 is done bea
-        if (ALUSrcD) data2 = signExtended;
-        else data2         = data2_temp;
+        signImmD = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
+        PCbranchD <= PCReg+4*signImmD-32'd4; //-4 is done bea
+        if (ALUSrcD) data2 = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
+        else data2         = valueOutput2;
         RsD                = instruction[25:21];
         RtD                = instruction[20:16];
         RdD                = instruction[15:11];
 
         //beq
-        equalD=(data1-data2_temp)==0;
-        notEqualD=(data1-data2_temp) !=0;
-        if(instruction[31:26] == 6'b000100 )PCSrcD= branchD & equalD;
-        if(instruction[31:26] == 6'b001000) PCSrcD= BNEType & notEqualD;
+        equalD=(valueOutput1-valueOutput2)==0;
+        notEqualD=(valueOutput1-valueOutput2) !=0;
+        if(instruction[31:26] == 6'b000100 )PCSrcD= branchD & ((valueOutput1-valueOutput2) ==0);
+        if(instruction[31:26] == 6'b001000) PCSrcD= BNEType & ((valueOutput1-valueOutput2) !=0);
+        if(flagALU) PCSrcD = flagALU & branchD;
+        else PCSrcD=0;
         // end
         
     end

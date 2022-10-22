@@ -1,11 +1,10 @@
 module instructionFetch(clk,
                         PC,
                         instruction,
-                        write,
                         PCbranchD,
                         PCSrcD,
                         hazardDetected);
-    input clk,write;
+    input clk;
     
     output [31:0] PC;
     output [31:0] instruction;
@@ -21,19 +20,19 @@ module instructionFetch(clk,
     // );
     
     always @(posedge clk) begin
-        if (!hazardDetected) begin
-            if (write)
-                case(PCSrcD)     //if branchPresent == 1, then newPC = PC + branchOffset
-                    1'b0: PCReg = PC+32'b00000000000000000000000000000100;
-                    1'b1: PCReg = PCbranchD;
-                endcase
-            else
-                PCReg = PC;
-        end
+        
+        if (!hazardDetected)
+            case(PCSrcD)     //if branchPresent == 1, then newPC = PC + branchOffset
+                1'b0: PCReg = PC+32'b00000000000000000000000000000100;
+                1'b1: PCReg = PCbranchD;
+            endcase
+        else
+            PCReg = PC;
+        
         
         $display("%0d",newPCreg);
         $display("%0d",PC);
-        #2 $display("%0b",instruction);
+        // #2 $display("%0b",instruction);
     end
     
     always @(negedge clk) begin

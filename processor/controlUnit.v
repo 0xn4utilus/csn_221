@@ -7,27 +7,38 @@ module controlUnit(clk,
                    ALUSrcD,
                    regDstD,
                    branchD,
-                   BNEType, //IT IS ONE WHEN INSTRUCTION IS BNE
+                   BNEType,     //IT IS ONE WHEN INSTRUCTION IS BNE
                    ALUOp);
     input clk;
     input [31:0] instruction;
     output  reg regWriteD,memToRegD,memWriteD,ALUSrcD,regDstD,branchD,BNEType;//BRANCHD left for now
     output reg[3:0]ALUControlD;
     output reg[1:0] ALUOp;
-    always @(posedge clk) begin
-        ALUOp     <= 2'b0;// LOAD-store
-        regWriteD <= 1;// tells about write back
-        memToRegD <= 0;// write back from  ALU or data mem
-        memWriteD <= 0;// memory write
-        ALUSrcD   <= 0;// r branch o
-        regDstD   <= 0;// all except r type
-        branchD   <= 0;//all except branch type
-        BNEType<=0;
+    
+    
+    always @(*) begin
+        
+        // $display("iii");
+        // ALUOp     <= 2'b0;// LOAD-store
+        // regWriteD <= 1;// tells about write back
+        // memToRegD <= 0;// write back from  ALU or data mem
+        // memWriteD <= 0;// memory write
+        // ALUSrcD   <= 0;// r branch o
+        // regDstD   <= 0;// all except r type
+        // branchD   <= 0;//all except branch type
+        // BNEType   <= 0;
         case(instruction[31:26])
             6'b000000:// THIS IMPLIES IT IS R TYPE
             begin
-                ALUOp   <= 2'd2;
-                regDstD <= 1;
+                ALUOp     <= 2'd2;
+                regDstD   <= 1;
+                regWriteD <= 1;// tells about write back
+                memToRegD <= 0;// write back from  ALU or data mem
+                memWriteD <= 0;// memory write
+                ALUSrcD   <= 0;// r branch o
+                branchD   <= 0;//all except branch type
+                BNEType   <= 0;
+                
                 
             end
             6'b000100://BRANCH
@@ -35,24 +46,67 @@ module controlUnit(clk,
                 ALUOp     <= 2'd1;
                 regWriteD <= 0;
                 branchD   <= 1;
+                memToRegD <= 0;// write back from  ALU or data mem
+                memWriteD <= 0;// memory write
+                ALUSrcD   <= 0;// r branch o
+                regDstD   <= 0;// all except r type
+                BNEType   <= 0;
+                
             end
             6'b001000: //BNE
             begin
-                ALUOp <= 2'd1;
-                BNEType<=1;
-                regWriteD <= 0 ;
+                ALUOp       <= 2'd2;
+                BNEType     <= 1;
+                regWriteD   <= 0 ;
+                memToRegD   <= 0;// write back from  ALU or data mem
+                memWriteD   <= 0;// memory write
+                ALUSrcD     <= 0;// r branch o
+                regDstD     <= 0;// all except r type
+                branchD     <= 0;//all except branch type
+                ALUControlD <= 4'b0110;
+                
+                
             end
-            6'd35:
+            6'b001001: //ADDI
+            begin              
+
+                ALUOp       <= 2'd2;
+                BNEType     <= 0;
+                regWriteD   <= 1 ;
+                ALUControlD <= 4'b0010;
+                memToRegD   <= 0;// write back from  ALU or data mem
+                memWriteD   <= 0;// memory write
+                ALUSrcD     <= 1;// r branch o
+                regDstD     <= 0;// all except r type
+                branchD     <= 0;//all except branch type
+                $display("hii %0d",branchD);
+
+            end
+            6'b100011:
             begin
+                ALUOp     <= 2'b0;// LOAD-store
                 memToRegD <= 1;//load
+                regWriteD <= 1;// tells about write back
                 ALUSrcD   <= 1;
+                memWriteD <= 0;// memory write
+                regDstD   <= 0;// all except r type
+                branchD   <= 0;//all except branch type
+                BNEType   <= 0;
+                
             end
-            6'd43:begin //store
+            6'b101011:begin //store
+                ALUOp     <= 2'b0;// LOAD-store
                 regWriteD <= 0 ;
                 memWriteD <= 1;
+                memToRegD <= 0;// write back from  ALU or data mem
+                regDstD   <= 0;// all except r type
                 ALUSrcD   <= 1;
+                branchD   <= 0;//all except branch type
+                BNEType   <= 0;
+                
+                
             end
-            6'b000010: ALUSrcD = 1;
+            // 6'b000010: ALUSrcD = 1; // jump
             
             
         endcase
@@ -65,11 +119,12 @@ module controlUnit(clk,
                     6'b100101:ALUControlD     <= 4'b0001;//or r type
                     //  6'b101010:ALUControlD <= 4'b0111;// set on less than
                     6'b011000:ALUControlD     <= 4'b1111;// multipication r type
-                    6'b000010:ALUControlD     <= 4'b0010; //ADDI type
+                    // 6'b000010:ALUControlD  <= 4'b0010; //ADDI type
+                    
                 endcase
             end
-            2'd0:ALUControlD <= 4'b0010;//load-store
-            2'd1:ALUControlD <= 4'b0110;// branch
+            2'd0:ALUControlD    <= 4'b0010;//load-store
+            // 2'd1:ALUControlD <= 4'b0110;// branch
             
             
         endcase

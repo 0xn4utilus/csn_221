@@ -12,7 +12,7 @@ module writeBack(memToRegW,
     
     registerFile regFile(
     .clk(clk),
-    .index(WriteRegW),
+    .index1(WriteRegW),
     .valueInput(resultW),
     .writeEnable(regWriteW)
     );
