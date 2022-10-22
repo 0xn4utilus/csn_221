@@ -42,7 +42,7 @@ $var wire 32 8 value2 [31:0] $end
 $var wire 32 9 AluOutE [31:0] $end
 $var reg 32 : SrcAE [31:0] $end
 $var reg 32 ; SrcBE [31:0] $end
-$var reg 32 < WriteDataE [31:0] $end
+$var reg 32 < writeDataE [31:0] $end
 $var reg 5 = writeRegE [4:0] $end
 $scope module ALU $end
 $var wire 2 > ALUOp [1:0] $end

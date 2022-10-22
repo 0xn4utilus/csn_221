@@ -30,8 +30,8 @@ module instructionFetch(clk,
             PCReg = PC;
         
         
-        $display("%0d",newPCreg);
-        $display("%0d",PC);
+        // $display("%0d",newPCreg);
+        // $display("%0d",PC);
         // #2 $display("%0b",instruction);
     end
     

@@ -7,6 +7,7 @@
 module registerFile (clk,
                      index1,
                      index2,
+                     indexWB,
                      valueInput,
                      valueOutput1,
                      valueOutput2,
@@ -20,7 +21,7 @@ module registerFile (clk,
     input regWriteW;
     
     input[31:0]  valueInput;
-    input[4:0] index1,index2;
+    input[4:0] index1,index2,indexWB;
     input writeEnable,readEnable,clk;
     output reg [31:0] valueOutput1,valueOutput2;
     output reg flagOutput1,flagOutput2;
@@ -31,9 +32,11 @@ module registerFile (clk,
             registers[i] <= 32'b0;
         end
     end
-    
+
     always @(*) begin
-        
+        $display("%0d",registers[1]);
+        $display("%0d",registers[2]);
+        $display("3: %0d",registers[3]);
         registers[0] <= 32'b0;
 
         valueOutput1 <= registers[index1];
@@ -41,8 +44,8 @@ module registerFile (clk,
         
         if (regWriteW)
         begin
-            registers[index1] <= valueInput;
-            regFlags[index2]  <= 1;
+            registers[indexWB] <= valueInput;
+            regFlags[indexWB]  <= 1;
         end
         flagOutput1 <= regFlags[index1];
         flagOutput2 <= regFlags[index2];

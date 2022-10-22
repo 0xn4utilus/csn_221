@@ -21,7 +21,7 @@ module instructionDecode(clk,
                          flagALU,
                          valueOutput1,
                          valueOutput2,
-                         signImmD
+                         signImmD,
                          );
     input [31:0]instruction;
     input flagALU;

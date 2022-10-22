@@ -37,19 +37,19 @@ module IDtoExe(clk,
     output reg [31:0]signImmE,data11,data22;
     
     always@(negedge clk) begin
-        regWriteE          = regWriteD;
-        memToRegE          = memToRegD;
-        memWriteE          = memWriteD;
-        ALUControlE        = ALUControlD;
-        ALUSrcE            = ALUSrcD;
-        regDstE            = regDstD;
-        RsE                = RsD;
-        RtE                = RtD;
-        RdE                = RdD;
-        data11             = data1;
-        data22             = data2;
-        signImmE = signImmD;
-        ALUOpE=ALUOp;
+        regWriteE   <= regWriteD;
+        memToRegE   <= memToRegD;
+        memWriteE   <= memWriteD;
+        ALUControlE <= ALUControlD;
+        ALUSrcE     <= ALUSrcD;
+        regDstE     <= regDstD;
+        RsE         <= RsD;
+        RtE         <= RtD;
+        RdE         <= RdD;
+        data11      <= data1;
+        data22      <= data2;
+        signImmE <= signImmD;
+        ALUOpE   <= ALUOp;
     end
     
 endmodule

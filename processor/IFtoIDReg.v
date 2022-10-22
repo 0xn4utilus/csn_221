@@ -26,8 +26,8 @@ module IFtoIDReg(instruction,
         //         IFtoIDReg_in <= instruction;
         //         PC_in        <= outPC+32'd4;
         //     end
-        #0.01 instructionD = instruction;
-        PCReg        = outPC+32'd4;
+        #0.01 instructionD <= instruction;
+        PCReg        <= outPC+32'd4;
     end
     // assign instructionD = instruction;
     

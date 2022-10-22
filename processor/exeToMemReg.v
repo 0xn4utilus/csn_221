@@ -18,14 +18,14 @@ module exeToMemReg(regWriteE,
     output reg [4:0] writeRegM;
     output reg [31:0] ALUOutM, writeDataM;
     
-    always@(posedge clk) begin
+    always@(negedge clk) begin
         
-        regWriteM  = regWriteE;
-        memToRegM  = memToRegE;
-        memWriteM  = memWriteE;
-        writeRegM  = writeRegE;
-        ALUOutM    = ALUOut;
-        writeDataM = writeDataE;
+        regWriteM  <= regWriteE;
+        memToRegM  <= memToRegE;
+        memWriteM  <= memWriteE;
+        writeRegM  <= writeRegE;
+        ALUOutM    <= ALUOut;
+        writeDataM <= writeDataE;
         
     end
 endmodule

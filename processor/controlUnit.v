@@ -37,7 +37,7 @@ module controlUnit(clk,
                 memWriteD <= 0;// memory write
                 ALUSrcD   <= 0;// r branch o
                 branchD   <= 0;//all except branch type
-                BNEType   <= 0;
+                BNEType   <= 0;//indicates it is not a bne if 0
                 
                 
             end
@@ -62,7 +62,7 @@ module controlUnit(clk,
                 memWriteD   <= 0;// memory write
                 ALUSrcD     <= 0;// r branch o
                 regDstD     <= 0;// all except r type
-                branchD     <= 0;//all except branch type
+                branchD     <= 1;//all except branch type
                 ALUControlD <= 4'b0110;
                 
                 
@@ -79,7 +79,7 @@ module controlUnit(clk,
                 ALUSrcD     <= 1;// r branch o
                 regDstD     <= 0;// all except r type
                 branchD     <= 0;//all except branch type
-                $display("hii %0d",branchD);
+                // $display("hii %0d",branchD);
 
             end
             6'b100011:

@@ -11,7 +11,7 @@ module testbenchexe ();
     wire [31:0] AluOutE;
     wire [1:0] ALUOpE;
     wire [31:0] value1,value2,signImmE;
-    wire [31:0] WriteDataE;
+    wire [31:0] writeDataE;
     
     initial begin
         $dumpfile("testbenchexe.vcd");
@@ -34,7 +34,7 @@ module testbenchexe ();
 
   // always @(*) begin
   //   // $display("%0d",writeRegE);
-  //   // $display("%0d",writedataE);
+  //   // $display("%0d",writeDataE);
   //  // $display("%0d",ALUOpE);
   // end
 

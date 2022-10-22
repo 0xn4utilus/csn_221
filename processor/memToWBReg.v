@@ -16,13 +16,13 @@ module memToWBReg(regWriteM,
     output reg [4:0] writeRegW;
     output reg [31:0] readDataW, ALUOutW;
     
-    always@(posedge clk) begin
+    always@(negedge clk) begin
         
-        regWriteW = regWriteM;
-        memToRegW = memToRegM;
-        writeRegW = writeRegM;
-        readDataW = readDataM;
-        ALUOutW   = ALUOut;
+        regWriteW <= regWriteM;
+        memToRegW <= memToRegM;
+        writeRegW <= writeRegM;
+        readDataW <= readDataM;
+        ALUOutW   <= ALUOut;
     end
     
 endmodule
