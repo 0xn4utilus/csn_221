@@ -1,7 +1,4 @@
 module instructionExecution (clk,
-                            //  regWriteE,
-                            //  memToRegE,
-                            //  memWriteE,
                              ALUControlE,
                              ALUOpE,
                              ALUSrcE,
@@ -19,7 +16,6 @@ module instructionExecution (clk,
                              writeDataE);
 
     input clk,ALUSrcE,regDstE;
-    // inout regWriteE,memToRegE,memWriteE;
     input [4:0] RsE,RtE,RdE;
     input [1:0] ALUOpE;
     input [3:0] ALUControlE;                                                                                        
@@ -28,15 +24,6 @@ module instructionExecution (clk,
     output [31:0] AluOutE;
     input [31:0] value1,value2,signImmE;
     output reg [31:0] writeDataE;
-    
-    // ALU ALU(
-    // .input1(SrcAE),
-    // .input2(SrcBE),
-    // .ex_cmd(ALUControlE),
-    // .alu_out(AluOutE),
-    // .ALUOp(ALUOpE),
-    // .branchD(branchD)
-    // );
     
     always @(posedge clk) begin
         SrcAE      <= value1;

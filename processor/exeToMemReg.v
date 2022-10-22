@@ -1,4 +1,4 @@
-module exeToMemReg(regWriteE,
+module exeToMemReg(regWriteE,  //This is a buffer register.
                    memToRegE,
                    memWriteE,
                    ALUOut,

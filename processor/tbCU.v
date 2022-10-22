@@ -14,13 +14,11 @@ module testbench ();
     end
     
     assign instruction = 32'b00000000010000110000100000100000;
-    always@(*)begin
-        $display("%0d",ALUOp);
-        $display("%0d",instruction[31:26]);
-    end
+    // always@(*)begin
+    //     $display("%0d",ALUOp);
+    //     $display("%0d",instruction[31:26]);
+    // end
 
     controlUnit controlUnit(clk, instruction, regWriteD, memToRegD, memWriteD, ALUControlD, ALUSrcD, regDstD, branchD, ALUOp);
     
 endmodule
-
-//test pass but facing a problem of don't care in first output

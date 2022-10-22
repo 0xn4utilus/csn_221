@@ -11,7 +11,6 @@ module testbench ();
         $dumpvars(0,testbench);
     end
 
-    //assign flag = 1'b1;
     assign branchD = 1'b0;
     assign input1 = 32'd88;
     assign input2 = 32'd88;
@@ -19,8 +18,7 @@ module testbench ();
     assign ALUOp = 2'd2;
 
     ALU ALU(input1, input2, flag, ex_cmd, alu_out, ALUOp, branchD);
-    always @(*) begin
-        $display("%0d %0d",alu_out,flag);
-    end
+    // always @(*) begin
+    //     $display("%0d %0d",alu_out,flag);
+    // end
 endmodule
-// test =>passed

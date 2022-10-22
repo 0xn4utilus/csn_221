@@ -35,5 +35,3 @@ module testbench ();
                         PCSrcD,
                         hazardDetected);
 endmodule 
-
-// test -> PASS

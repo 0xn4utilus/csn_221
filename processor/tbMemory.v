@@ -23,10 +23,6 @@ module testbench();
     assign address_reg = 32'b0000000000000000000000000000000;
     assign ALUOutM     = 32'b00000000000000000000000000000001;
     
-    // always @(*) begin
-    //     $display("%0b",readDataM);
-    // end
-    
     memory  memory(clk,
     regWriteM,
     memToRegM,
@@ -38,5 +34,3 @@ module testbench();
     readDataM);
     
 endmodule
-
-//test pass but we are not accessing memory right now

@@ -13,5 +13,3 @@ module testbench ();
 
     instructionMem instructionMem(PC,instruction);
 endmodule 
-
-// test-> Pass

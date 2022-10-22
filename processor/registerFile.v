@@ -41,8 +41,8 @@ module registerFile (clk,
     end
 
     always @(*) begin
-        $display("%0d",registers[1]);
-        $display("%0d",registers[2]);
+        $display("1: %0d",registers[1]);
+        $display("2: %0d",registers[2]);
         $display("3: %0d",registers[3]);
         $display("4: %0d",registers[4]);
         registers[0] <= 32'b0;
@@ -58,14 +58,12 @@ module registerFile (clk,
         flagOutput1 <= regFlags[index1];
         flagOutput2 <= regFlags[index2];
 
-        //hazard setting flag => 0
-
-        if(regWriteD)begin
-            case (regDstD)
-                1'b0:regFlags[RtD] <= 0;
-                1'b1:regFlags[RdD] <= 0; 
-            endcase 
-        end
+        // if(regWriteD)begin
+        //     case (regDstD)
+        //         1'b0:regFlags[RtD] <= 0;
+        //         1'b1:regFlags[RdD] <= 0; 
+        //     endcase 
+        // end
         
     end
     

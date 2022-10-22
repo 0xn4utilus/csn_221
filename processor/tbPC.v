@@ -13,5 +13,3 @@ module testbench ();
     assign writeEnable = 1'b1;
     programCounter pc(inpPC,outPC,writeEnable);
 endmodule
-
-//test-> PASS

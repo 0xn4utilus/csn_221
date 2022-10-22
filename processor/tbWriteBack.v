@@ -20,9 +20,9 @@ module testbench();
     assign readDataW = 32'b00000000000000000000000000000001;
     assign writeRegW = 5'b00101;
     writeBack writeBack(memToRegW,regWriteW, readDataW, ALUOutW,resultW,clk);
-    always @(*) begin
-        $display("%0d",writeRegW);
-    end
+    // always @(*) begin
+    //     $display("%0d",writeRegW);
+    // end
     
 endmodule
 //test passed

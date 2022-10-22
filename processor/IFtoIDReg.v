@@ -13,22 +13,11 @@ module IFtoIDReg(instruction,
     output reg [31:0] PCReg;
     
     
-    // instructionFetch instructionFetch(
-    // .instruction(instruction),
-    // .PC(outPC)
-    // );
-    
-    // reg [31:0]IFtoIDReg_in;
-    // reg[31:0] PC_in;
     always @(negedge clk) begin
         
-        //    begin
-        //         IFtoIDReg_in <= instruction;
-        //         PC_in        <= outPC+32'd4;
-        //     end
         #0.01 instructionD <= instruction;
-        PCReg        <= outPC+32'd4;
+        PCReg        <= outPC+32'd4;  //leads to the next instruction
+
     end
-    // assign instructionD = instruction;
     
 endmodule

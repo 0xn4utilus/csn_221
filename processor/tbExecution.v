@@ -31,13 +31,6 @@ module testbenchexe ();
     assign signImmE = 32'd100;
     assign ALUOpE = 2'd1;
 
-
-  // always @(*) begin
-  //   // $display("%0d",writeRegE);
-  //   // $display("%0d",writeDataE);
-  //  // $display("%0d",ALUOpE);
-  // end
-
     instructionExecution instructionExecution (clk,
                              regWriteE,
                              memToRegE,
@@ -55,9 +48,4 @@ module testbenchexe ();
                              value1,
                              value2);
 
-      // always@(*)begin
-      // $display("%0d","%0d","%0d",regWriteE,memToRegE,memWriteE);
-      // end
 endmodule 
-
-// test ->

@@ -29,5 +29,3 @@ module testbench ();
     end
     dataMemory dataMemory(clk, active, rw, index, outputMem, inputMem);
 endmodule
-
-// test -> PASS

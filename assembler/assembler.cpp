@@ -140,7 +140,7 @@ map<string, r_format> R_TYPE_INSTRUCTIONS_RS_RT = {
     // need rs,rt
     {"DIV", make_r_format("000000", "", "", "00000", "00000", "011010")},
     {"DIVU", make_r_format("000000", "", "", "00000", "00000", "011011")},
-    // {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},// try to implement it using 3 registers 
+    // {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},// try to implement it using 3 registers
     {"MULTU", make_r_format("000000", "", "", "00000", "00000", "011001")}};
 
 map<string, r_format> R_TYPE_INSTRUCTIONS_RD = {
@@ -234,7 +234,7 @@ string parse_line(string s)
                 return J_TYPE_INSTRUCTIONS[i.first].opcode + J_TYPE_INSTRUCTIONS[i.first].psuedo_address;
             }
         }
-        
+
         for (const auto i : I_TYPE_INSTRUCTIONS_IMM)
         {
             string search_pattern = "^" + i.first + "\\s";
@@ -262,10 +262,10 @@ string parse_line(string s)
                 {
                     return "-1";
                 }
-                I_TYPE_INSTRUCTIONS_IMM[i.first].rt = REGISTERS[v[1]];
-                I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[3])).to_string();
-                I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[2]];
-                return I_TYPE_INSTRUCTIONS_IMM[i.first].opcode + I_TYPE_INSTRUCTIONS_IMM[i.first].rs + I_TYPE_INSTRUCTIONS_IMM[i.first].rt + I_TYPE_INSTRUCTIONS_IMM[i.first].imm;
+                I_TYPE_INSTRUCTIONS_MEM[i.first].rt = REGISTERS[v[1]];
+                I_TYPE_INSTRUCTIONS_MEM[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
+                I_TYPE_INSTRUCTIONS_MEM[i.first].rs = REGISTERS[v[3]];
+                return I_TYPE_INSTRUCTIONS_MEM[i.first].opcode + I_TYPE_INSTRUCTIONS_MEM[i.first].rs + I_TYPE_INSTRUCTIONS_MEM[i.first].rt + I_TYPE_INSTRUCTIONS_MEM[i.first].imm;
             }
         }
 
@@ -386,28 +386,44 @@ int main()
         return 0;
     }
 
-    output<<"module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[7:0] instMem[511:0];\n\n\tinitial begin\n";
+    output << "module instructionMem (rst, PC, instruction);\n\tinput rst;\n\tinput [31:0] PC;\n\toutput [31:0] instruction;\n\n\treg[7:0] instMem[511:0];\n\n\tinitial begin\n";
 
-    int j=0;
+    int j = 0;
 
     string line;
     while (!input.eof())
     {
         getline(input, line);
-        if(line.length()==0) continue;
+        if (line.length() == 0)
+            continue;
         cout << line << '\n';
 
         string parsed_line = parse_line(line);
         if (parsed_line != "-1")
         {
-            for(int m=0;m<4;m++){
-                output <<"\t\tinstMem["<<j<<"] <= 8'b";
-                for(int k=0;k<8;k++){
-                    output<<parsed_line[8*m+k];
+            for (int m = 0; m < 4; m++)
+            {
+                output << "\t\tinstMem[" << j << "] <= 8'b";
+                for (int k = 0; k < 8; k++)
+                {
+                    output << parsed_line[8 * m + k];
                 }
-                output<<";\n";
+                output << ";\n";
                 j++;
             }
+            output << "\t\tinstMem[" << j + 0 << "] <= 8'b00100100;\n";
+            output << "\t\tinstMem[" << j + 1 << "] <= 8'b00011111;\n";
+            output << "\t\tinstMem[" << j + 2 << "] <= 8'b00000000;\n";
+            output << "\t\tinstMem[" << j + 3 << "] <= 8'b00000000;\n";
+            output << "\t\tinstMem[" << j + 4 << "] <= 8'b00100100;\n";
+            output << "\t\tinstMem[" << j + 5 << "] <= 8'b00011110;\n";
+            output << "\t\tinstMem[" << j + 6 << "] <= 8'b00000000;\n";
+            output << "\t\tinstMem[" << j + 7 << "] <= 8'b00000000;\n";
+            output << "\t\tinstMem[" << j + 8 << "] <= 8'b00100100;\n";
+            output << "\t\tinstMem[" << j + 9 << "] <= 8'b00011101;\n";
+            output << "\t\tinstMem[" << j + 10 << "] <= 8'b00000000;\n";
+            output << "\t\tinstMem[" << j + 11 << "] <= 8'b00000000;\n";
+            j += 12;
         }
         else
         {
@@ -416,5 +432,5 @@ int main()
         }
     }
 
-    output<<"\tend\n\n\tassign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};\n\nendmodule";
+    output << "\tend\n\n\tassign instruction = {instMem[PC], instMem[PC + 1], instMem[PC + 2], instMem[PC+ 3]};\n\nendmodule";
 }

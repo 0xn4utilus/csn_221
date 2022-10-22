@@ -1,4 +1,4 @@
-// array of 512 elements each of 32 bit named mem[n]
+// array of 512 elements each of 32 bit named memData[n]
 
 module dataMemory(clk,
                   active,
@@ -22,22 +22,28 @@ module dataMemory(clk,
         end
     end
     
-    always @(*) begin
-        // #2 $display("%0d",memData[1]);
-        // #2 $display("%0d",memData[0]);
+    always @(*) begin 
+    //    $display("%0d",active);
         if (active)                          //decides if read write instruction is received
             case(rw)                         //decides read or write
-                1'b0: begin
+                1'b1: begin
                     outputMemReg = memData[indexData];
                 end
-                1'b1: begin
+                1'b0: begin
                     memData[indexData] <= inputMem;
                     outputMemReg = 32'b0;
                 end
                 
             endcase
+           
             end
         
-        assign outputMem = outputMemReg;           //we will need a mux to decide if we don't want data to be returnrd in case of input
+        assign outputMem = outputMemReg;   
+                //we will need a mux to decide if we don't want data to be returnrd in case of input
+              always @(*) begin
+                
+                    //  $display("%0d",memData[indexData]);
+                
+              end
         
         endmodule
