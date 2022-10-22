@@ -127,6 +127,7 @@ map<string, r_format> R_TYPE_INSTRUCTIONS_RS_RT_RD = {
     {"XOR", make_r_format("000000", "", "", "", "00000", "100110")},
     {"SLLV", make_r_format("000000", "", "", "", "00000", "000100")},
     {"SRAV", make_r_format("000000", "", "", "", "00000", "000111")},
+    {"MULT", make_r_format("000000", "", "", "", "00000", "011000")},
     {"SRLV", make_r_format("000000", "", "", "", "00000", "000110")}};
 
 map<string, r_format> R_TYPE_INSTRUCTIONS_RT_RD_SA = {
@@ -139,7 +140,7 @@ map<string, r_format> R_TYPE_INSTRUCTIONS_RS_RT = {
     // need rs,rt
     {"DIV", make_r_format("000000", "", "", "00000", "00000", "011010")},
     {"DIVU", make_r_format("000000", "", "", "00000", "00000", "011011")},
-    {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},// try to implement it using 3 registers 
+    // {"MULT", make_r_format("000000", "", "", "00000", "00000", "011000")},// try to implement it using 3 registers 
     {"MULTU", make_r_format("000000", "", "", "00000", "00000", "011001")}};
 
 map<string, r_format> R_TYPE_INSTRUCTIONS_RD = {
@@ -262,8 +263,8 @@ string parse_line(string s)
                     return "-1";
                 }
                 I_TYPE_INSTRUCTIONS_IMM[i.first].rt = REGISTERS[v[1]];
-                I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
-                I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[3]];
+                I_TYPE_INSTRUCTIONS_IMM[i.first].imm = bitset<IMM_LENGTH>(stol(v[3])).to_string();
+                I_TYPE_INSTRUCTIONS_IMM[i.first].rs = REGISTERS[v[2]];
                 return I_TYPE_INSTRUCTIONS_IMM[i.first].opcode + I_TYPE_INSTRUCTIONS_IMM[i.first].rs + I_TYPE_INSTRUCTIONS_IMM[i.first].rt + I_TYPE_INSTRUCTIONS_IMM[i.first].imm;
             }
         }
@@ -279,8 +280,8 @@ string parse_line(string s)
                     return "-1";
                 }
                 I_TYPE_INSTRUCTIONS_BRANCH[i.first].rt = REGISTERS[v[1]];
-                I_TYPE_INSTRUCTIONS_BRANCH[i.first].imm = bitset<IMM_LENGTH>(stol(v[2])).to_string();
-                I_TYPE_INSTRUCTIONS_BRANCH[i.first].rs = REGISTERS[v[3]];
+                I_TYPE_INSTRUCTIONS_BRANCH[i.first].imm = bitset<IMM_LENGTH>(stol(v[3])).to_string();
+                I_TYPE_INSTRUCTIONS_BRANCH[i.first].rs = REGISTERS[v[2]];
                 return I_TYPE_INSTRUCTIONS_BRANCH[i.first].opcode + I_TYPE_INSTRUCTIONS_BRANCH[i.first].rs + I_TYPE_INSTRUCTIONS_BRANCH[i.first].rt + I_TYPE_INSTRUCTIONS_BRANCH[i.first].imm;
             }
         }

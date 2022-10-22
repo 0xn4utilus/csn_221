@@ -1,5 +1,5 @@
 module topLevel(input clk,
-                     input rst);
+                input rst);
     wire clk, rw, active;
     wire rst;
     wire[31:0] input1, input2,alu_out,instruction,instructionD,inputMem,outputMem,value1;
@@ -10,7 +10,7 @@ module topLevel(input clk,
     wire [3:0] ex_cmd,ALUControlD,ALUControlE;
     wire [1:0] ALUOp,ALUOpE;
     wire [4:0]writeRegE,writeRegM,RsD,RtD,RdD,RsE,RtE,RdE,writeRegW,index1,index2,indexWB;
-    assign hazardDetected=0;
+    // assign hazardDetected = 0;
     
     instructionFetch instructionFetch_top(
     .clk(clk),
@@ -25,16 +25,16 @@ module topLevel(input clk,
     .PC(PC),
     .instruction(instruction)
     );
-
+    
     IFtoIDReg IFtoIDReg_top(
-        .instruction(instruction),
-        .instructionD(instructionD),
-        .clk(clk),
-        .outPC(PC),
-        .reset(rst),
-        .PCReg(PCReg)
+    .instruction(instruction),
+    .instructionD(instructionD),
+    .clk(clk),
+    .outPC(PC),
+    .reset(rst),
+    .PCReg(PCReg)
     );
-
+    
     controlUnit cu(
     .clk(clk),
     .instruction(instructionD),
@@ -72,12 +72,16 @@ module topLevel(input clk,
     .flagOutput1(flag1),
     .flagOutput2(flag2),
     .regWriteW(regWriteW),
-    .indexWB(writeRegW)
+    .indexWB(writeRegW),
+    .regWriteD(regWriteD),
+    .regDstD(regDstD),
+    .RtD(RtD),
+    .RdD(RdD)
     // registers[instruction[25:21]] //wrong syntax for data1
     // registers[instruction[20:16]] //this is data2_temp
     );
-
-
+    
+    
     instructionDecode instructionDecode_p(
     .clk(clk),
     .instruction(instructionD),
@@ -133,10 +137,11 @@ module topLevel(input clk,
     .RdE(RdE),
     .signImmE(signImmE),
     .ALUOp(ALUOp),
-    .ALUOpE(ALUOpE)
+    .ALUOpE(ALUOpE),
+    .hazardDetected(hazardDetected)
     );
     
-
+    
     instructionExecution instructionExecution_top(
     .clk(clk),
     // .regWriteE(regWriteE),
@@ -158,7 +163,7 @@ module topLevel(input clk,
     .SrcBE(SrcBE),
     .writeDataE(writeDataE)
     );
-
+    
     
     
     exeToMemReg exeToMemReg_top(
@@ -176,7 +181,7 @@ module topLevel(input clk,
     .writeRegM(writeRegM),
     .clk(clk)
     );
-
+    
     
     memory memory_top(
     .clk(clk),
@@ -185,7 +190,7 @@ module topLevel(input clk,
     .address(address),
     .memWriteM(memWriteM)
     );
-
+    
     dataMemory dataMem(
     .clk(clk),
     .active(active),
@@ -195,8 +200,8 @@ module topLevel(input clk,
     .outputMem(readDataM)
     );
     
-
-
+    
+    
     
     memToWBReg memToWBReg_top(
     .clk(clk),
@@ -211,7 +216,7 @@ module topLevel(input clk,
     .writeRegM(writeRegM),
     .writeRegW(writeRegW)
     );
-        
+    
     
     writeBack writeBack_top(
     .clk(clk),

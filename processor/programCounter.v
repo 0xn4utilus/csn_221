@@ -5,9 +5,10 @@ module programCounter(inpPC,
     input [31:0] inpPC;
     output wire [31:0] outPC;
     reg[31:0] outPCReg;
+
     always @(*) begin
         case(writeEnable)
-            1'b1: outPCReg = inpPC;
+            1'b1: outPCReg <= inpPC;
         endcase
     end
     assign outPC = outPCReg;

@@ -15,10 +15,17 @@ module registerFile (clk,
                      writeEnable,
                      regWriteW,
                      flagOutput1,
-                     flagOutput2);
+                     flagOutput2,
+                     regWriteD,
+                     regDstD,
+                     RtD,
+                     RdD);
+
     reg regFlags [31:0] ;             //We will initialise all of these elements as 1 in initial block of testbench
     reg [31:0] registers[31:0];
     input regWriteW;
+    input regWriteD,regDstD;
+    input [4:0] RtD,RdD;
     
     input[31:0]  valueInput;
     input[4:0] index1,index2,indexWB;
@@ -37,6 +44,7 @@ module registerFile (clk,
         $display("%0d",registers[1]);
         $display("%0d",registers[2]);
         $display("3: %0d",registers[3]);
+        $display("4: %0d",registers[4]);
         registers[0] <= 32'b0;
 
         valueOutput1 <= registers[index1];
@@ -49,6 +57,15 @@ module registerFile (clk,
         end
         flagOutput1 <= regFlags[index1];
         flagOutput2 <= regFlags[index2];
+
+        //hazard setting flag => 0
+
+        if(regWriteD)begin
+            case (regDstD)
+                1'b0:regFlags[RtD] <= 0;
+                1'b1:regFlags[RdD] <= 0; 
+            endcase 
+        end
         
     end
     

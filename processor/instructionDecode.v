@@ -33,9 +33,10 @@ module instructionDecode(clk,
     output [1:0] ALUOp;
     output reg hazardDetected,PCSrcD,equalD,notEqualD;
     input flag1,flag2,branchD;
-    initial begin
-        hazardDetected=1;
-    end
+    
+    // initial begin
+    //     hazardDetected = 1;
+    // end
     // controlUnit cu(
     // .clk(clk),
     // .instruction(instruction),
@@ -54,7 +55,7 @@ module instructionDecode(clk,
     output reg [4:0] index1,index2;
     
     input [31:0] valueOutput1,valueOutput2;
-
+    
     // IFtoIDReg IFtoID(
     // .instructionReg(instruction),
     // .PCReg(PCReg)
@@ -75,12 +76,12 @@ module instructionDecode(clk,
     // // registers[instruction[20:16]] //this is data2_temp
     // );
     always @(*) begin
-        index1          <= instruction[25:21];
-        index2          <= instruction[20:16];
-        data1       <= valueOutput1;
-        // flag1        <= flagOutput1;
-        // flag2        <= flagOutput2;
-        data2 <= valueOutput2;
+        index1   <= instruction[25:21];
+        index2   <= instruction[20:16];
+        data1    <= valueOutput1;
+        // flag1 <= flagOutput1;
+        // flag2 <= flagOutput2;
+        data2    <= valueOutput2;
     end
     
     always@(posedge clk) begin
@@ -106,20 +107,19 @@ module instructionDecode(clk,
             default : hazardDetected <= 0;
         endcase
         signImmD = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
-        PCbranchD <= PCReg+4*signImmD-32'd4; //-4 is done bea
+        PCbranchD <= PCReg-4*signImmD-32'd4; //-4 is done bea
         if (ALUSrcD) data2 = {instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15],instruction[15:0]};
         else data2         = valueOutput2;
         RsD                = instruction[25:21];
         RtD                = instruction[20:16];
         RdD                = instruction[15:11];
-
+        
         //beq
-        equalD=(valueOutput1-valueOutput2)==0;
-        notEqualD=(valueOutput1-valueOutput2) !=0;
-        if(instruction[31:26] == 6'b000100 )PCSrcD= branchD & ((valueOutput1-valueOutput2) ==0);
-        if(instruction[31:26] == 6'b001000) PCSrcD= BNEType & ((valueOutput1-valueOutput2) !=0);
-        if(flagALU) PCSrcD = flagALU & branchD;
-        else PCSrcD=0;
+        equalD                 = (valueOutput1-valueOutput2) == 0;
+        notEqualD              = (valueOutput1-valueOutput2) != 0;
+        if (instruction[31:26] == 6'b000100)PCSrcD = branchD & ((valueOutput1-valueOutput2) == 0);
+        if (instruction[31:26] == 6'b001000) PCSrcD = BNEType & ((valueOutput1-valueOutput2) != 0);
+        PCSrcD    = notEqualD & branchD;
         // end
         
     end

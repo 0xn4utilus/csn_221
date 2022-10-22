@@ -24,6 +24,8 @@ module writeBack(memToRegW,
         else begin
             #0.01 resultW <= ALUOutW;
         end
+
+        
     end
     // assign resultW = resultW_reg;
     
