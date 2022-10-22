@@ -173,8 +173,8 @@ map<string, i_format> I_TYPE_INSTRUCTIONS_BRANCH = {
 map<string, i_format> I_TYPE_INSTRUCTIONS_IMM = {
     // immediate
     // need rs,rt,imm
-    {"ADDI", make_i_format("001000", "", "", "")},
-    {"ADDIU", make_i_format("001001", "", "", "")},
+    // {"ADDI", make_i_format("001000", "", "", "")},
+    {"ADDI", make_i_format("001001", "", "", "")},
     {"ANDI", make_i_format("001100", "", "", "")},
     {"ORI", make_i_format("001101", "", "", "")},
     {"SLTI", make_i_format("001010", "", "", "")},
